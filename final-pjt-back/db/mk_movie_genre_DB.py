@@ -9,7 +9,7 @@ movie_data = []
 movie_id = []
 
 # tmdb top_rated API 1페이지 ~ 5페이지까지
-for i in range(1, 5):
+for i in range(1, 2):
     res=requests.get(f'https://api.themoviedb.org/3/discover/movie?api_key=47deac5349c200ea6a8315d1f742e31d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={i}&with_watch_monetization_types=flatrate3')
     data=res.json()
 
