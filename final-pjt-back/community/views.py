@@ -16,7 +16,7 @@ from .models import Article, Comment
 
 
 @api_view(['GET', 'POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated]) # 인증된 경우만 권한을 준다.
 def article_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
@@ -24,11 +24,11 @@ def article_list(request):
         serializer = ArticleListSerializer(articles, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+    elif request.method == 'POST': # 게시글 생성
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            # serializer.save()
-            serializer.save(user=request.user)
+            serializer.save()
+            # serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

@@ -41,7 +41,18 @@ INSTALLED_APPS = [
     # CORS policy
     'corsheaders',
     
+    # Auth
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     
+    # registeration -> 회원등록(가입)
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    
+    # django default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +60,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
+
+# 장고 프래임워크에서 토큰인증을 사용하겠다 하는 것 -> 이어서 권한 설정
+REST_FRAMEWORK = {
+    # Authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    
+    # Permission
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny', #-> 인증하면 모든 뷰 허용(글로벌)
+        # 나중에 필요한 것만 뷰에 데코레이터를 달아서 조작하겠다-.
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
