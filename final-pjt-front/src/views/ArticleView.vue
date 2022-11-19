@@ -1,16 +1,37 @@
 <template>
   <div>
-    <h1>ArticleView</h1>
+    <h1>Article Page</h1>
+    <router-link :to="{ name: 'createArticle' }">[글쓰기]</router-link>
+    <hr>
     <ArticleList/>
   </div>
 </template>
 
 <script>
 import ArticleList from '@/components/ArticleList'
+
 export default {
   name: 'ArticleView',
   components: {
     ArticleList,
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  },
+  created() {
+    this.getArticles()
+  },
+  methods: {
+    getArticles() {
+      if (this.isLogin === true) {
+        this.$store.dispatch('getArticles')
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'login'})
+      }
+    }
   }
 }
 </script>

@@ -1,7 +1,11 @@
 <template>
   <div>
     <h3>ArticleList</h3>
-    <ArticleListItem/>
+    <ArticleListItem
+      v-for="article in articles"
+      :key="article.id"
+      :article="article"
+    />
   </div>
 </template>
 
@@ -12,6 +16,11 @@ export default {
   name: 'ArticleList',
   components: {
     ArticleListItem,
+  },
+  computed: {
+    articles() {
+      return this.$store.state.articles
+    }
   }
 }
 </script>

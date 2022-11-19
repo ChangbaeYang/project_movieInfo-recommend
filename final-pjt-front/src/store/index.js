@@ -25,6 +25,7 @@ export default new Vuex.Store({
   ],
   state: {
     movies: [],
+    articles: [],
     token: null,
   },
   getters: {
@@ -33,6 +34,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // 게시글 정보
+    GET_ARTICLES(state, articles) {
+      state.articles = articles
+    },
+    // 영화 정보
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
@@ -43,6 +49,22 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getArticles(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v2/articles`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        context.commit('GET_ARTICLES', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     getMovies(context) {
       axios({
         method: 'get',

@@ -18,13 +18,11 @@ const routes = [
     path: '/articles',
     name: 'articles',
     component: ArticleView,
-    children: [
-      {
-        path: 'createArticle',
-        name: 'createArticle',
-        component: () => import('@/views/CreateArticleView')
-      }
-    ]
+  },
+  {
+    path: '/createArticle',
+    name: 'createArticle',
+    component: () => import('@/views/CreateArticleView')
   },
   {
     path: '/login',
