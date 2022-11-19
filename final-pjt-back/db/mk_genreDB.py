@@ -43,7 +43,6 @@ with open('genre.csv', 'w', newline='',encoding='utf-8') as csvfile:
 
 
 
-# for i in genre_data['genres']:
 #     genre_data_list.append({ 'name': i['name'], 'genre_id': i['id']})
 
 # # df_movie = pandas.DataFrame(genre_data_list)
