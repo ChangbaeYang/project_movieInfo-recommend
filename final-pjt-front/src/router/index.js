@@ -17,7 +17,14 @@ const routes = [
   {
     path: '/articles',
     name: 'articles',
-    component: ArticleView
+    component: ArticleView,
+    children: [
+      {
+        path: 'createArticle',
+        name: 'createArticle',
+        component: () => import('@/views/CreateArticleView')
+      }
+    ]
   },
   {
     path: '/login',
