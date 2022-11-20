@@ -1,23 +1,10 @@
 <template>
-  <transition name="modal">
+  <transition name="modal modal-dialog modal-dialog-scrollable">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
-          <!-- <div class="modal-header">
-            <slot name="header"> default header </slot>
-          </div> -->
-
+        <div class="modal-container" v-click-outside="test">
           <div class="modal-body">
             <slot name="body"> default body </slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                close
-              </button>
-            </slot>
           </div>
         </div>
       </div>
@@ -28,8 +15,18 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
+
 export default {
-  name: "MovieDetailModal",
+  name: "DetailModal",
+  methods: {
+    test() {
+      this.$emit('close')
+    }
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
 }
 </script>
 

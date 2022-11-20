@@ -28,6 +28,7 @@ export default new Vuex.Store({
     articles: [],
     actors: [],
     directors: [],
+    genres: [],
     token: null,
   },
   getters: {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     GET_DIRECTORS(state, directors) {
       state.directors = directors
+    },
+    GET_GENRES(state, genres) {
+      state.genres = genres
     },
     // 회원가입 & 로그인
     SAVE_TOKEN(state, token) {
@@ -104,6 +108,18 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('GET_DIRECTORS', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getGenres(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/genres/`,
+      })
+        .then((res) => {
+          context.commit('GET_GENRES', res.data)
         })
         .catch((err) => {
           console.log(err)

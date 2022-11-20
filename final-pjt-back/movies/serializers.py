@@ -12,6 +12,7 @@ class MovieListSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     # 해당 무비를 좋아하는 사람의 숫자를 나타내고 싶다.
     movie_lovers_set = serializers.IntegerField(source='like_users.count', read_only=True)
+    
      
     class Meta:
         model = Movie

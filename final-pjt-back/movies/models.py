@@ -40,7 +40,7 @@ class Actor(models.Model):
     biography = models.CharField(max_length=1000, null=True)
     acting_movies = models.ManyToManyField(Movie, related_name='actors_in_movie')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actors')
-    
+
     def __str__(self):
         return self.name
 
