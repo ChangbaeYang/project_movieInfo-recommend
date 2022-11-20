@@ -26,6 +26,8 @@ export default new Vuex.Store({
   state: {
     movies: [],
     articles: [],
+    actors: [],
+    directors: [],
     token: null,
   },
   getters: {
@@ -42,6 +44,12 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
+    GET_ACTORS(state, actors) {
+      state.actors = actors
+    },
+    GET_DIRECTORS(state, directors) {
+      state.directors = directors
+    },
     // 회원가입 & 로그인
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -52,7 +60,7 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v2/articles`,
+        url: `${API_URL}/api/v2/articles/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
@@ -72,6 +80,30 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('GET_MOVIES', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getActors(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/actors/`,
+      })
+        .then((res) => {
+          context.commit('GET_ACTORS', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getDirectors(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/directors/`,
+      })
+        .then((res) => {
+          context.commit('GET_DIRECTORS', res.data)
         })
         .catch((err) => {
           console.log(err)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Actor, Movie, Genre, Review
+from .models import Actor, Movie, Director, Genre, Review
 
 # MovieList Page를 렌더링할 때 필요한 시리얼 라이저
 class MovieListSerializer(serializers.ModelSerializer):
@@ -53,6 +53,21 @@ class GenreSerializer(serializers.ModelSerializer):
         depth = 1
 
 ################################################################
+
+class DirectorListSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Director
+        fields = '__all__'
+    
+class DirectorSerializer(serializers.ModelSerializer):
+    # 해당 배우를 좋아하는 사람의 숫자를 나타내고 싶다.
+    
+    class Meta:
+        model = Director
+        fields = '__all__'
+
+
 class ReviewListSerializer(serializers.ModelSerializer):
     
     class Meta:

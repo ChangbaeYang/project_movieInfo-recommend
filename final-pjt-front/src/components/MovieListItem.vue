@@ -1,7 +1,7 @@
 <template>
   <article class="d-flex justify-content-center align-items-center col-xs-12 col-sm-3 mb-3">
     <div @click="showModal" class="card h-100" style="width: 30rem; cursor:pointer">
-      <img :src="imgURL" class="card-img-top" :alt="movie.title">
+      <img :src="imgURL" class="card-img-top" :alt="movie.title" @error="replaceImg">
     </div>
 
     <MovieDetailModal v-if="movieModal" @close="movieModal = false">
@@ -20,6 +20,7 @@
 
 <script>
 import MovieDetailModal from '@/components/MovieDetailModal';
+import noImg from '../assets/no_image.png'
 
 export default {
   name: 'MovieListItem',
@@ -39,6 +40,10 @@ export default {
   methods: {
     showModal() {
       this.movieModal = !this.movieModal
+    },
+    replaceImg(e) {
+      e.preventDefault
+      e.target.src = noImg
     }
   }
 }

@@ -9,13 +9,19 @@
       <router-link :to="{ name : 'articleDebate' }">토론 게시판</router-link> | 
       <router-link :to="{ name : 'articleHelp' }">건의 게시판</router-link>
     </nav>
+    <!-- <ArticleList/> -->
     <router-view/>
   </div>
 </template>
 
 <script>
+// import ArticleList from '@/views/ArticleList'
+
 export default {
   name: 'ArticleView',
+  // components: {
+  //   ArticleList
+  // },
   computed: {
     isLogin() {
       return this.$store.getters.isLogin

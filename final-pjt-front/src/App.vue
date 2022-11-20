@@ -3,6 +3,8 @@
     <nav>
       <h3>MDDM</h3>
       <router-link :to="{ name: 'movies' }">Movie</router-link> |
+      <router-link :to="{ name: 'actors' }">Actor</router-link> |
+      <router-link :to="{ name: 'directors' }">Director</router-link> |
       <router-link :to="{ name: 'articles' }">Article</router-link> |
       <router-link :to="{ name: 'profile' }">Profile</router-link> | 
       <router-link :to="{ name: 'login' }">Login</router-link> | 

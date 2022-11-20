@@ -6,9 +6,10 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .serializers import MovieListSerializer, MovieSerializer
 from .serializers import ActorListSerializer, ActorSerializer 
+from .serializers import DirectorListSerializer, DirectorSerializer
 from .serializers import ReviewListSerializer, ReviewSerializer
 from .serializers import GenreListSerializer, GenreSerializer
-from .models import Movie, Actor, Review, Genre
+from .models import Movie, Actor, Director, Review, Genre
 # Create your views here.
 # df repr(????, reqe):
 #     pass
@@ -38,6 +39,20 @@ def actor_detail(request, actor_pk):
     actor = get_object_or_404(Actor, pk=actor_pk)
     if request.method == 'GET':
         serializer = ActorSerializer(actor)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def director_list(request):
+    directors = get_list_or_404(Director)
+    if request.method == 'GET':
+        serializer = DirectorListSerializer(directors, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET'])
+def director_detail(request, director_pk):
+    director = get_object_or_404(Actor, pk=director_pk)
+    if request.method == 'GET':
+        serializer = DirectorSerializer(director)
         return Response(serializer.data)
 
 @api_view(['GET'])

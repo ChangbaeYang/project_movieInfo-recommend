@@ -34,11 +34,10 @@ class Movie(models.Model):
 class Actor(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
-    character = models.CharField(max_length=100)
     popularity = models.FloatField()
     known_for_department = models.CharField(max_length=100)
     profile_path = models.CharField(max_length=200)
-    biography = models.CharField(max_length=200)
+    biography = models.CharField(max_length=1000, null=True)
     acting_movies = models.ManyToManyField(Movie, related_name='actors_in_movie')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actors')
     
@@ -51,7 +50,7 @@ class Director(models.Model):
     popularity = models.FloatField()
     known_for_department = models.CharField(max_length=100)
     profile_path = models.CharField(max_length=200)
-    biography = models.CharField(max_length=1000)
+    biography = models.CharField(max_length=1000, null=True)
     directing_movies = models.ManyToManyField(Movie, related_name='director_in_movie')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_directors')
 

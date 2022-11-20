@@ -1,5 +1,5 @@
 <template>
-  <div class="border-here">
+  <div>
     <h1>MovieView</h1>
     <MovieList/>
   </div>
@@ -17,8 +17,5 @@ export default {
 </script>
 
 <style>
-  .border-here {
-    border: 1px solid lightblue;
-  }
 
 </style>

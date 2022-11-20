@@ -30,8 +30,5 @@ export default {
 </script>
 
 <style>
-  .border-here {
-    border: 1px solid lightgray;
-  }
 
 </style>
