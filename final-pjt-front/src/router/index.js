@@ -59,6 +59,16 @@ const routes = [
     component: () => import('@/views/UpdateArticleView')
   },
   {
+    path: '/actors',
+    name: 'actors',
+    component: () => import('@/views/ActorView')
+  },
+  {
+    path: '/directors',
+    name: 'directors',
+    component: () => import('@/views/DirectorView')
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginView
