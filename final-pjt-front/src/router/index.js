@@ -5,6 +5,7 @@ import ArticleView from '@/views/ArticleView'
 import MyProfile from '@/views/MyProfile'
 import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
+import ArticleDetail from '@/views/ArticleDetail'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,16 @@ const routes = [
     path: '/createArticle',
     name: 'createArticle',
     component: () => import('@/views/CreateArticleView')
+  },
+  {
+    path: '/articles/:id',
+    name: 'articleDetail',
+    component: ArticleDetail,
+  },
+  {
+    path: '/articles/:id/update',
+    name: 'updateArticle',
+    component: () => import('@/views/UpdateArticleView')
   },
   {
     path: '/login',

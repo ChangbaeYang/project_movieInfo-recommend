@@ -20,10 +20,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    comment_set = CommentSerializer(many=True, read_only=True)
-    comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
+    # comment_set = CommentSerializer(many=True, read_only=True)
+    # comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
     username = serializers.CharField(source='user.username', read_only=True)
-    like_users_count = serializers.IntegerField(source='like_users.count', read_only=True)
+    # like_users_count = serializers.IntegerField(source='like_users.count', read_only=True)
     
     class Meta:
         model = Article
