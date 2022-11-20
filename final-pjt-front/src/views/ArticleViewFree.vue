@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3>자유 게시판</h3>
+    <h3>자유게시판</h3>
     <ArticleListItem
-      v-for="article in articles"
+      v-for="article in articles.slice().reverse()"
       :key="article.id"
       :article="article"
     />
@@ -10,28 +10,27 @@
 </template>
 
 <script>
-import ArticleListItem from '@/components/ArticleListItem';
+import ArticleListItem from '@/components/ArticleListItem'
 
 export default {
   name: "ArticleViewFree",
-  data() {
-    return {
-      articles: [],
-    }
-  },
   components: {
     ArticleListItem,
   },
-  created: {
-    FreeArticle() {
-      for (let article in this.$store.state.articles) {
-        console.log(article)
+  computed: {
+    articles() {
+      let articles = [] 
+      let inputArticles = this.$store.state.articles
+      // console.log(inputArticles)
+      for (let article of inputArticles) {
+        // console.log(article)
         if (article.category === 1) {
-          this.articles.push(article)
-        }
+          articles.push(article)
+        } 
       }
+      return articles
     }
-  },
+  }
 }
 </script>
 

@@ -4,6 +4,7 @@
     <p>작성자 : {{ article.username }}</p>
     <p>{{ article.title }}</p>
     <p>{{ article.category }}</p>
+    <p>{{ categoryType }}</p>
     <router-link :to="{ name: 'articleDetail', params: { id: article.id } }">
       [DETAIL]
     </router-link>
@@ -17,6 +18,11 @@ export default {
   props: {
     article: Object,
   },
+  computed: {
+    categoryType() {
+      return typeof this.article.category
+    }
+  }
 }
 </script>
 

@@ -59,7 +59,7 @@ export default {
         }
       })
         .then(() => {
-          this.$router.push({ name: 'articles' })
+          this.$router.push({ name: 'articleList' })
         })
         .catch((err) => {
           console.log(err)
