@@ -3,18 +3,19 @@
     <h1>Article Page</h1>
     <router-link :to="{ name: 'createArticle' }">[글쓰기]</router-link>
     <hr>
-    <ArticleList/>
+    <nav>
+      <router-link :to="{ name : 'articleList' }">전체 게시판</router-link> |
+      <router-link :to="{ name : 'articleFree' }">자유 게시판</router-link> | 
+      <router-link :to="{ name : 'articleDebate' }">토론 게시판</router-link> | 
+      <router-link :to="{ name : 'articleHelp' }">건의 게시판</router-link>
+    </nav>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import ArticleList from '@/components/ArticleList'
-
 export default {
   name: 'ArticleView',
-  components: {
-    ArticleList,
-  },
   computed: {
     isLogin() {
       return this.$store.getters.isLogin
