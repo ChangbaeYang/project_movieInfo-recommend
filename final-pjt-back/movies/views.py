@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth import get_user_model
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -50,7 +51,7 @@ def director_list(request):
     
 @api_view(['GET'])
 def director_detail(request, director_pk):
-    director = get_object_or_404(Actor, pk=director_pk)
+    director = get_object_or_404(Director, pk=director_pk)
     if request.method == 'GET':
         serializer = DirectorSerializer(director)
         return Response(serializer.data)
@@ -103,3 +104,20 @@ def create_review(request, movie_pk):
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+# ###########################################################################
+
+@api_view(['POST'])
+def director_like(request, director_pk):
+    director = get_object_or_404(Director, pk=director_pk)
+    if director.like_users.filter(pk=request.user.pk).exists():
+        director.like_users.remove(request.user.pk)
+        director_liked = False
+    else:
+        director.like_users.add(request.user.pk)
+        director_liked = True
+    context={
+        'director_liked': director_liked,
+        'director_like_count': director.like_users.count()
+    } 
+    return Response(context)

@@ -29,7 +29,9 @@ export default new Vuex.Store({
     actors: [],
     directors: [],
     genres: [],
+    director_liked: '',
     token: null,
+    user_info: null,
   },
   getters: {
     isLogin(state) {
@@ -45,11 +47,11 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
-    GET_ACTORS(state, actors) {
-      state.actors = actors
-    },
     GET_DIRECTORS(state, directors) {
       state.directors = directors
+    },
+    GET_ACTORS(state, actors) {
+      state.actors = actors
     },
     GET_GENRES(state, genres) {
       state.genres = genres
@@ -58,6 +60,17 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'movies' })
+    },
+    // 로그아웃
+    DELETE_TOKEN(state) {
+      state.token = null
+      router.replace('/').catch(() => {})
+    },
+    GET_USER_INFO(state, user_data) {
+      state.user_info = user_data
+    },
+    LIKE_DIRECTOR(state, director_liked) {
+      state.director_liked = director_liked
     }
   },
   actions: {
@@ -139,7 +152,23 @@ export default new Vuex.Store({
           console.log(res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
         })
-    },
+      },
+    getUserInfo(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${this.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log(res)
+          context.commit('GET_USER_INFO', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      },
     logIn(context, payload) {
       axios({
         method: 'post',
@@ -149,12 +178,38 @@ export default new Vuex.Store({
           password: payload.password,
         }
       })
-      .then((res) => {
-        console.log(res.data.key)
-        context.commit('SAVE_TOKEN', res.data.key)
+        .then((res) => {
+          context.commit('SAVE_TOKEN', res.data.key)
+          this.dispatch('getUserInfo')
+        })
+    },
+    logOut(context) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`,
       })
-    }
+        .then(() => {
+          context.commit('DELETE_TOKEN')
+        })
+    },
+    likeDirector(context, payload) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/directors/${payload}/like/`,
+        headers: {
+          Authorization: `Token ${this.state.token}`
+        },
+        data: {
+          director_pk: payload,
+        }
+      })
+        .then((res) => {
+
+          context.commit('LIKE_DIRECTOR', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
-  modules: {
-  }
 })

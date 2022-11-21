@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal modal-dialog modal-dialog-scrollable">
+  <transition name="modal modal-dialog modal-dialog-scrollable" style="height:300px;">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container" v-click-outside="test">

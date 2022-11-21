@@ -9,6 +9,7 @@ urlpatterns = [
     path('actors/<int:actor_pk>/', views.actor_detail),
     path('directors/', views.director_list),
     path('directors/<int:director_pk>/', views.director_detail),
+    path('directors/<int:director_pk>/like/', views.director_like),
     path('reviews/', views.review_list),
     path('reviews/<int:review_pk>/', views.review_detail),
     path('movies/<int:movie_pk>/reviews/', views.create_review),

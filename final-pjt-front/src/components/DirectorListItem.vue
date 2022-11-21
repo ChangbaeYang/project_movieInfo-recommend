@@ -21,8 +21,9 @@
                 <p class="card-text">popularity : {{ director.popularity }}</p>
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
-                <p class="card-text"><small class="text-muted">'' like this director </small></p>
-                <button>좋아요</button>
+                <p class="card-text"><small class="text-muted">{{ directorLikeCount }} like this director </small></p>
+                <p :class="{ 'display-none': Liked , 'display-block' : !Liked }" @click="likeDirector">❤</p>
+                <p :class="{ 'display-none': !Liked , 'display-block' : Liked }" @click="likeDirector">💖</p>
               </div>
             </div>
           </div>
@@ -69,6 +70,26 @@ export default {
       }
       return repMovieTitle
     },
+    isLogin() { // 좋아요 버튼은 로그인되있어야만 누를 수 있도록했다.
+      if (this.$store.state.token) {
+        return true
+      } else {
+        return false
+      }
+    },
+    directorLikeCount() {
+      return this.director.like_users.length
+    },
+    Liked() {
+      let user_id = this.$store.state.user_info.pk
+      if (this.director.like_users.includes(user_id)) {
+        console.log('like!')
+        return true
+      } else {
+        console.log('dont!')
+        return false
+      }
+    }
   },
   methods: {
     showDirectorModal() {
@@ -83,10 +104,23 @@ export default {
       this.directorModal = false
       document.body.style.overflow = 'unset'
     },
+    likeDirector() {
+      if (this.$store.state.token) {
+        this.$store.dispatch('likeDirector', this.director.id)
+      } else {
+        this.$router.push({ name: 'login'})
+        alert('💖로그인이 필요한 기능입니다!💖')
+      }
+    }
   }
 }
 </script>
 
 <style>
-
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
 </style>
