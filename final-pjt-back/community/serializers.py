@@ -8,8 +8,8 @@ class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         # fields = ('id', 'title', 'content')
-        fields = ('id', 'title', 'content', 'user', 'username', 'category')
-
+        # fields = ('id', 'title', 'content', 'user', 'username', 'category')
+        fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
 

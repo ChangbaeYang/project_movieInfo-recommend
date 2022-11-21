@@ -79,7 +79,7 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v2/articles/`,
         headers: {
           Authorization: `Token ${context.state.token}`
-        }
+        },
       })
       .then((res) => {
         // console.log(res)
@@ -157,11 +157,10 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/accounts/user/`,
         headers: {
-          Authorization: `Token ${this.state.token}`
+          Authorization: `Token ${context.state.token}`
         },
       })
         .then((res) => {
-          console.log(res)
           context.commit('GET_USER_INFO', res.data)
         })
         .catch((err) => {

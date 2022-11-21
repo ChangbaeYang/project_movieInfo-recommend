@@ -22,8 +22,8 @@
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
                 <p class="card-text"><small class="text-muted">{{ directorLikeCount }} like this director </small></p>
-                <p :class="{ 'display-none': Liked , 'display-block' : !Liked }" @click="likeDirector">❤</p>
-                <p :class="{ 'display-none': !Liked , 'display-block' : Liked }" @click="likeDirector">💖</p>
+                <p @click="likeDirector">❤</p>
+                <p @click="likeDirector">💖</p>
               </div>
             </div>
           </div>
@@ -80,16 +80,6 @@ export default {
     directorLikeCount() {
       return this.director.like_users.length
     },
-    Liked() {
-      let user_id = this.$store.state.user_info.pk
-      if (this.director.like_users.includes(user_id)) {
-        console.log('like!')
-        return true
-      } else {
-        console.log('dont!')
-        return false
-      }
-    }
   },
   methods: {
     showDirectorModal() {
