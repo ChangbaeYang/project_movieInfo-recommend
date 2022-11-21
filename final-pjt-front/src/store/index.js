@@ -31,7 +31,6 @@ export default new Vuex.Store({
     genres: [],
     director_liked: '',
     token: null,
-    user_info: null,
   },
   getters: {
     isLogin(state) {

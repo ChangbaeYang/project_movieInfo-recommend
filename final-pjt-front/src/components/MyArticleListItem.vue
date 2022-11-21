@@ -1,4 +1,4 @@
-<template>
+`<template>
   <div>
     <h5>MyArticleListItem</h5>
   </div>
