@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>MyCommentList</h3>
     <MyCommentListItem/>
   </div>
 </template>
@@ -12,6 +11,14 @@ export default {
   name: "MyCommentList",
   components: {
     MyCommentListItem,
+  },
+  computed: {
+    myComments() {
+      return this.$store.state.my_comments
+    }
+  },
+  created() {
+    this.$store.dispatch('getMyComment')
   }
 }
 </script>

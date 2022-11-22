@@ -78,11 +78,12 @@ export default {
       }
     },
     Liked() {
+      if (!this.isLogin) {
+        return false
+      }
       if (this.$store.getters.director_liked) {
-        // console.log('좋다')
         return true
       } else {
-        // console.log('싫다')
         return false
       }
     },
@@ -99,20 +100,19 @@ export default {
       this.directorModal = !this.directorModal
       document.body.style.overflow = 'hidden'
       this.$store.dispatch('selectDirector', this.director) // 선택한 감독의 정보를 vuex에 넘긴다.
-      if (!this.isLogin) {
-        this.$store.state.director_liked = false
-      }
     },
     replaceImg(e) {
       e.preventDefault
       e.target.src = noImg
     },
     closeModal() {
+      // 여기에서 기존 디렉터 정보를 지우자.
+      this.$store.dispatch('CLOSE_DIRECTOR_MODAL')
       this.directorModal = false
       document.body.style.overflow = 'unset'
     },
     likeDirector() {
-      if (this.$store.state.token) {
+      if (this.$store.state.token) { // 로그인이 되어있다면
         this.$store.dispatch('likeDirector', this.director.id)
       } else {
         this.$router.push({ name: 'login'})

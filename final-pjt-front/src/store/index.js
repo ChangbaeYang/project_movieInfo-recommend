@@ -13,24 +13,23 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState(
-      // {
-      // storage: {
-      //   getItem: (key) => ls.get(key),
-      //   setItem: (key, value) => ls.set(key, value),
-      //   removeItem: (key) => ls.remove(key)
-      // }
-    // }
-    ), // 난독화
+    createPersistedState(),
   ],
   state: {
     movies: [],
     articles: [],
     actors: [],
+    all_comments: [],
     directors: [],
     genres: [],
-    token: null, // 유저 토큰
-    user_info: null,
+    // user 정보 관련 -> 로그아웃 시 다 지우기
+    token: null, // 유저 토큰, 로그아웃할 때 지워주기
+    user_info: null, // 유저 정보, 로그아웃할 때 지워주기
+    my_articles: [],
+    my_comments: [],
+  
+
+    // 인스턴스 정보 관련
     director: null, // 선택한 하나의 감독 정보를 담고 있다.
     director_liked: false, // 유저가 감독을 좋아하는지를 담고 있다.
     director_like_count: 0,
@@ -51,8 +50,8 @@ export default new Vuex.Store({
       return state.comments
     }
   },
+  /////////////// 게시글 정보, 선택한 게시글정보, 댓글정보 //////////////
   mutations: {
-/////////////// 게시글 정보, 선택한 게시글정보, 댓글정보 //////////////
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
@@ -61,6 +60,9 @@ export default new Vuex.Store({
     },
     GET_COMMENTS(state, comments_data) {
       state.comments = comments_data
+    },
+    GET_ALL_COMMENTS(state, all_comments_data) {
+      state.all_comments = all_comments_data
     },
     CREATE_COMMENT(state, comments_data) {
       state.comments.push(comments_data) // 새로만든 데이터를 넣어준다.
@@ -92,8 +94,11 @@ export default new Vuex.Store({
       router.push({ name: 'movies' })
     },
     // 로그아웃
-    DELETE_TOKEN(state) {
+    LOGOUT_USER(state) {
       state.token = null
+      state.user_info = null
+      state.my_articles = []
+      state.my_comments = []
       router.replace('/').catch(() => {})
     },
     GET_USER_INFO(state, user_data) {
@@ -107,7 +112,52 @@ export default new Vuex.Store({
     SELECT_DIRECTOR(state, selected_director) {
       // console.log(selected_director)
       state.director = selected_director
+      state.director_like_count = selected_director.like_users.length
+      if (selected_director.like_users.includes(state.user_info.pk)) {
+        // 이미 좋아요를 누른 상태라면
+        state.director_liked = true
+      } else {
+        state.director_liked = false
+      }
     },
+    CLOSE_DIRECTOR_MODAL(state) {
+      state.director = null
+    },
+/////////////////////////////프로필관련///////////////////////////////////
+    GET_MY_ARTICLE(state) {
+      let a = true // 분기
+      for (let article of state.articles) {
+        if (article.username === state.user_info.username) {
+          for (let my_article of state.my_articles) {
+            if (my_article.id === article.id) {
+              a = false
+              break
+            }
+          } 
+          if (a) {
+            state.my_articles.push(article)
+          }
+        }
+      } 
+    },
+    GET_MY_COMMENT(state) {
+      let b = true
+      for (let comment of state.all_comments) {
+        if (comment.user === state.user_info.pk) {
+          console.log(comment.user)
+          console.log(state.user_info.pk)
+          for (let my_comment of state.my_comments) {
+            if (my_comment.id === comment.id) {
+              b = false
+              break
+            }
+          }
+          if (b) {
+            state.my_comments.push(comment)
+          }
+        }
+      }
+    }
   },
   actions: {
     getArticles(context) {
@@ -188,6 +238,23 @@ export default new Vuex.Store({
           console.log(err)
           alert('댓글을 지울 권한이 없습니다.')
         })
+    },
+    getMyArticle(context) {
+      context.dispatch('getArticles') // 바로 유저정보에 갔을 경우를 대비한다.
+      context.commit('GET_MY_ARTICLE')
+    },
+    getAllComments(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v2/comments/`
+      })
+        .then((res) => {
+          context.commit('GET_ALL_COMMENTS', res.data)
+        })
+    },
+    getMyComment(context){
+      context.dispatch('getAllComments')
+      context.dispatch('GET_MY_COMMENT')
     },
 ////////////////////////////////////////////////////////////////
     getMovies(context) {
@@ -289,12 +356,12 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/logout/`,
       })
         .then(() => {
-          context.commit('DELETE_TOKEN')
+          context.commit('LOGOUT_USER')
         })
     },
 /////////////////////////////////////////////////////////////////////
-
     selectDirector(context, selectedDirector) {
+      // console.log(selectedDirector)
       context.commit('SELECT_DIRECTOR', selectedDirector)
     },
     likeDirector(context, payload) {
@@ -304,9 +371,6 @@ export default new Vuex.Store({
         headers: {
           Authorization: `Token ${this.state.token}`
         },
-        data: {
-          director_pk: payload,
-        }
       })
         .then((res) => {
           // console.log(res.data)

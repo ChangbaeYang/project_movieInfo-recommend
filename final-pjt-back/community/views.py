@@ -30,7 +30,6 @@ def article_list(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
 @api_view(['GET', 'DELETE', 'PUT'])
 def article_detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
@@ -69,6 +68,12 @@ def comment_list(request, article_pk):
             serializer.save(user=request.user, article_id=article.pk)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET'])
+def comment_list_all(request):
+    if request.method == 'GET':
+        comments = Comment.objects.all()
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, article_pk, comment_pk):

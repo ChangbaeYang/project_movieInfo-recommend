@@ -1,12 +1,15 @@
 `<template>
   <div>
-    <h5>MyArticleListItem</h5>
+    <p>{{ myArticle.content }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyArticleListItem"
+  name: "MyArticleListItem",
+  props: {
+    myArticle: Object,
+  }
 }
 </script>
 
