@@ -22,8 +22,8 @@
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
                 <p class="card-text"><small class="text-muted">{{ directorLikeCount }} like this director </small></p>
-                <p @click="likeDirector">❤</p>
-                <p @click="likeDirector">💖</p>
+                <p :class="{ 'display-none': Liked}" @click="likeDirector">❤</p>
+                <p :class="{ 'display-none': !Liked}" @click="likeDirector">💖</p>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default {
   props: {
     director: Object,
   },
-  created () {
+  created() {
     this.$store.dispatch('getMovies')
   },
   computed: {
@@ -77,14 +77,31 @@ export default {
         return false
       }
     },
-    directorLikeCount() {
-      return this.director.like_users.length
+    Liked() {
+      if (this.$store.getters.director_liked) {
+        // console.log('좋다')
+        return true
+      } else {
+        // console.log('싫다')
+        return false
+      }
     },
+    directorLikeCount() {
+      if (this.isLogin) {
+        return this.$store.getters.director_like_count
+      } else {
+        return this.$store.state.director.like_users.length
+      }
+    }
   },
   methods: {
     showDirectorModal() {
       this.directorModal = !this.directorModal
       document.body.style.overflow = 'hidden'
+      this.$store.dispatch('selectDirector', this.director) // 선택한 감독의 정보를 vuex에 넘긴다.
+      if (!this.isLogin) {
+        this.$store.state.director_liked = false
+      }
     },
     replaceImg(e) {
       e.preventDefault
@@ -101,7 +118,7 @@ export default {
         this.$router.push({ name: 'login'})
         alert('💖로그인이 필요한 기능입니다!💖')
       }
-    }
+    },
   }
 }
 </script>

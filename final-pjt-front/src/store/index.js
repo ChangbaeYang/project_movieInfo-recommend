@@ -29,12 +29,21 @@ export default new Vuex.Store({
     actors: [],
     directors: [],
     genres: [],
-    director_liked: '',
+    user_info: null,
+    director: null, // 선택한 하나의 감독 정보를 담고 있다.
+    director_liked: false, // 유저가 감독을 좋아하는지를 담고 있다.
+    director_like_count: 0,
     token: null,
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
+    },
+    director_liked(state) {
+      return state.director_liked
+    },
+    director_like_count(state) { // 클릭한 감독의 정보를 받아서 넣어주면 될듯 하다. 
+        return state.director_like_count
     }
   },
   mutations: {
@@ -68,8 +77,14 @@ export default new Vuex.Store({
     GET_USER_INFO(state, user_data) {
       state.user_info = user_data
     },
-    LIKE_DIRECTOR(state, director_liked) {
-      state.director_liked = director_liked
+    LIKE_DIRECTOR(state, payload) {
+      // console.log(payload)
+      state.director_liked = payload.director_liked
+      state.director_like_count = payload.director_like_count
+    },
+    SELECT_DIRECTOR(state, selected_director) {
+      // console.log(selected_director)
+      state.director = selected_director
     }
   },
   actions: {
@@ -148,7 +163,7 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          console.log(res.data.key)
+          // console.log(res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
         })
       },
@@ -190,6 +205,9 @@ export default new Vuex.Store({
           context.commit('DELETE_TOKEN')
         })
     },
+    selectDirector(context, selectedDirector) {
+      context.commit('SELECT_DIRECTOR', selectedDirector)
+    },
     likeDirector(context, payload) {
       axios({
         method: 'post',
@@ -202,8 +220,23 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-
+          // console.log(res.data)
           context.commit('LIKE_DIRECTOR', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    searchUp(context, searchData) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/search/${searchData}`,
+        data: {
+          search_data: searchData,
+        },
+      })
+        .then((res) => {
+          console.log(res.data) // 배열로 나온다.
         })
         .catch((err) => {
           console.log(err)

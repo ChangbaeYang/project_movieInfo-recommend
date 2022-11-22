@@ -20,7 +20,20 @@ def movie_list(request):
     if request.method == 'GET':
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
-    
+
+@api_view(['GET'])
+def movie_search(request, search_data):
+    movies = get_list_or_404(Movie)
+    if request.method == 'GET':
+        res_movies = []
+        for movie in movies:
+            print(movie.title)
+            if movie.title == search_data:
+                res_movies.append(movie)
+        if request.method == 'GET':
+            serializer = MovieListSerializer(res_movies, many=True)
+            return Response(serializer.data)
+ 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)

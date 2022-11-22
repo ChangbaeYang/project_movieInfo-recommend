@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'actors' }"> Actor </router-link> 
       <router-link :to="{ name: 'directors' }"> Director </router-link> 
       <router-link :to="{ name: 'articles' }"> Article </router-link> 
+      <input type="text" v-model="searchData" @keyup.enter="searchUp">
       <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link> 
       <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>  
       <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
@@ -17,6 +18,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      searchData: null,
+    }
+  },
   computed: {
     isLogin() {
       if (this.$store.state.token) { // 로그인이 되어있다면
@@ -29,7 +35,10 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('logOut')
-    }
+    },
+    searchUp() {
+      this.$store.dispatch('searchUp', this.searchData)
+    },
   }
 }
 </script>
