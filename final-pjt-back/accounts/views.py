@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserLikeSerializer
 
 # Create your views here.
 @api_view(['POST'])
@@ -29,13 +29,13 @@ def signup(request):
 
             return Response(serializer.data)
 
-@api_view(['POST'])
-def my_profile(request):
+# @api_view(['POST'])
+# def my_profile(request):
 
-    user = get_object_or_404(get_user_model(), pk=request.data.get('user_id'))
-    serializer = UserSerializer(user)
+#     user = get_object_or_404(get_user_model(), pk=request.data.get('user_id'))
+#     serializer = UserSerializer(user)
 
-    return Response(serializer.data)
+#     return Response(serializer.data)
 
 
 
@@ -53,6 +53,14 @@ def users(request):
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
+@api_view(['GET', 'POST'])
+def user_like_movie(request, user_pk):
+    user = request.user.pk
+    print(user)
+    print(request.user.like_movies.all())
+    like_movies = request.user.like_movies.all()
+    serializer = UserLikeSerializer(like_movies)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def follow(request, my_pk, user_pk):

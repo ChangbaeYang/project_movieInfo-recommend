@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h5>MyCommentListItem</h5>
+    <p>{{ myComment.content }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "MyCommentListItem",
+  props: {
+    myComment: Object,
+  }
 }
 </script>
 

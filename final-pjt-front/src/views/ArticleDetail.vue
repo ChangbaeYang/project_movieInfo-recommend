@@ -9,9 +9,9 @@
     <p>수정시간 : {{ article.updated_at }}</p>
     <p>좋아하는 사람 : {{ article.like_users }} -> 몇명좋아하는지로 바꾸자</p>
     <button @click="goBack">뒤로가기</button>
-    <router-link :to="{ name: 'updateArticle', params: { id: article.id } }">
-      <button>수정</button>
-    </router-link>
+    <!-- <router-link :to="{ name: 'updateArticle', params: { id: article.id } }"> -->
+      <button @click="updateArticle" >수정</button>
+    <!-- </router-link> -->
     <button @click="deleteArticle">삭제</button>
     <hr>
     <p>Comments</p>
@@ -84,6 +84,13 @@ export default {
         .catch(() => {
           alert('글을 삭제할 권한이 없습니다.')
         })
+    },
+    updateArticle() {
+      if (this.article.user == this.$store.state.user_info.pk) {
+        this.$router.push({ name: 'updateArticle', params: { id:this.article.id }})
+      } else {
+        alert('수정할 권한이 없습니다.')
+      }
     },
     getComments() {
       this.$store.dispatch('getComments', this.$route.params.id)

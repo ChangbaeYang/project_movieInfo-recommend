@@ -61,7 +61,7 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments_data) {
       state.comments = comments_data
     },
-    GET_ALL_COMMENTS(state, all_comments_data) {
+    GET_ALL_COMMENT(state, all_comments_data) {
       state.all_comments = all_comments_data
     },
     CREATE_COMMENT(state, comments_data) {
@@ -143,9 +143,8 @@ export default new Vuex.Store({
     GET_MY_COMMENT(state) {
       let b = true
       for (let comment of state.all_comments) {
+        // console.log(state.all_comments)
         if (comment.user === state.user_info.pk) {
-          console.log(comment.user)
-          console.log(state.user_info.pk)
           for (let my_comment of state.my_comments) {
             if (my_comment.id === comment.id) {
               b = false
@@ -243,18 +242,19 @@ export default new Vuex.Store({
       context.dispatch('getArticles') // 바로 유저정보에 갔을 경우를 대비한다.
       context.commit('GET_MY_ARTICLE')
     },
-    getAllComments(context) {
+    getAllComment(context) {
       axios({
         method: 'get',
         url: `${API_URL}/api/v2/comments/`
       })
         .then((res) => {
-          context.commit('GET_ALL_COMMENTS', res.data)
+          // console.log(res)
+          context.commit('GET_ALL_COMMENT', res.data)
         })
     },
     getMyComment(context){
-      context.dispatch('getAllComments')
-      context.dispatch('GET_MY_COMMENT')
+      context.dispatch('getAllComment')
+      context.commit('GET_MY_COMMENT')
     },
 ////////////////////////////////////////////////////////////////
     getMovies(context) {
@@ -331,6 +331,18 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('GET_USER_INFO', res.data)
+        })
+        .then(() => {
+          axios({
+            method: 'get',
+            url: `${API_URL}/api/v3/userLikeMovie/${this.state.user_info.pk}/`,
+            headers: { // 아니라면 지우기
+              Authorization: `Token ${context.state.token}`
+            },
+          })
+          .then((res) => {
+            console.log(res)
+          })
         })
         .catch((err) => {
           console.log(err)

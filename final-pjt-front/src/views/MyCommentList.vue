@@ -1,6 +1,10 @@
 <template>
   <div>
-    <MyCommentListItem/>
+    <MyCommentListItem
+      v-for="myComment in myComments"
+      :key="myComment.id"
+      :myComment="myComment"
+    />
   </div>
 </template>
 

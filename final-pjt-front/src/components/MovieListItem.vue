@@ -41,7 +41,7 @@
           <p>Overview</p>
           <p>{{ movie.overview }}</p>
         </div>
-        <textarea name="hi" id="" cols="30" rows="10"></textarea>
+        <!-- <textarea name="hi" id="" cols="30" rows="10"></textarea> -->
       </div>
     </DetailModal>
   </article>

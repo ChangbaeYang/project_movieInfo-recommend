@@ -47,10 +47,13 @@ def article_detail(request, article_pk):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
     elif request.method == 'PUT':
-        serializer = ArticleSerializer(article, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
+        writer = article.user
+        if request.user == writer: #요청유저와 글쓴 유저가 같다면
+            serializer = ArticleSerializer(article, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 @api_view(['GET', 'POST'])
@@ -71,7 +74,9 @@ def comment_list(request, article_pk):
 @api_view(['GET'])
 def comment_list_all(request):
     if request.method == 'GET':
+        print('hi')
         comments = Comment.objects.all()
+        print(comments)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 

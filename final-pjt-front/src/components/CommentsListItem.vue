@@ -16,7 +16,7 @@ export default {
   name: "CommentsListItem",
   data() {
     return {
-      username: this.$store.state.user_info.username
+      username: this.comment.username
     }
   },
   props: {

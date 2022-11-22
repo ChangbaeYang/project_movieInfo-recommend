@@ -1,4 +1,4 @@
-`<template>
+<template>
   <div>
     <p>{{ myArticle.content }}</p>
   </div>
