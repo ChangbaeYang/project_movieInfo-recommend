@@ -7,6 +7,7 @@ import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleList from '@/views/ArticleList'
+import PageNotFound from '@/views/PageNotFound'
 
 Vue.use(VueRouter)
 
@@ -110,6 +111,14 @@ const routes = [
       },
     ]
   },
+  {
+    path: '*',
+    redirect: '/404'
+  },
+  {
+    path: '/404',
+    component: PageNotFound
+  }
 ]
 
 const router = new VueRouter({
