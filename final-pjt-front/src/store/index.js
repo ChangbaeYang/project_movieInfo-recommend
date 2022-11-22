@@ -25,6 +25,7 @@ export default new Vuex.Store({
     // user 정보 관련 -> 로그아웃 시 다 지우기
     token: null, // 유저 토큰, 로그아웃할 때 지워주기
     user_info: null, // 유저 정보, 로그아웃할 때 지워주기
+    isLogin: false,
     my_articles: [],
     my_comments: [],
   
@@ -92,6 +93,11 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'movies' })
+    },
+    // 창근 로그인
+    loginSuccess(state, payload) {
+      state.isLogin = true
+      state.userInfo = payload
     },
     // 로그아웃
     LOGOUT_USER(state) {
@@ -357,7 +363,22 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.commit('LOGOUT_USER')
+        })},
+    getAccountInfo({ commit }) {
+      let token = localStorage.getItem("access_token")
+      axios
+        .get("/userinfo", {
+          headers: {
+            "X-AUTH-TOKEN": token
+          }
         })
+        .then((response) => {
+          commit("loginSuccess", response.data.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
     },
 /////////////////////////////////////////////////////////////////////
     selectDirector(context, selectedDirector) {
@@ -396,4 +417,4 @@ export default new Vuex.Store({
         })
     },
   },
-})
+)

@@ -7,26 +7,25 @@ import csv
 
 movie_data = []
 movie_id = []
+movie_genre_list = []
 
-# tmdb top_rated API 1페이지 ~ 5페이지까지
-for i in range(1, 2):
+# tmdb top_rated API 1페이지 ~ 500페이지까지
+for i in range(1, 50):
     res=requests.get(f'https://api.themoviedb.org/3/discover/movie?api_key=47deac5349c200ea6a8315d1f742e31d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={i}&with_watch_monetization_types=flatrate3')
     data=res.json()
 
-movie_genre_list = []
-
-for i in data['results']:
+    for j in data['results']:
     # check.append(i)
-    movie_genre_list.append({'movie_id': i['id'], 'genre_id': i['genre_ids'] })
+        movie_genre_list.append({'movie_id': j['id'], 'genre_id': j['genre_ids'] })
     # movie id 가져오기    
     # movie_id.append(i['id'])
 # # for k in range(len(movie_genre_list)):
 #     print(movie_genre_list[0]['genre_id'][2])
 
 movie_genre_data = []
-for j in range(len(movie_genre_list)):
-    for k in range(len(movie_genre_list[j]['genre_id'])):
-        movie_genre_data.append({'movie_id': movie_genre_list[j]['movie_id'], 'genre_id': movie_genre_list[j]['genre_id'][k]})
+for k in range(len(movie_genre_list)):
+    for l in range(len(movie_genre_list[k]['genre_id'])):
+        movie_genre_data.append({'movie_id': movie_genre_list[k]['movie_id'], 'genre_id': movie_genre_list[k]['genre_id'][l]})
 
 df_movie = pandas.DataFrame(movie_genre_data)
 df_movie.to_csv('movie_genre.csv' ,encoding='utf-8-sig')
