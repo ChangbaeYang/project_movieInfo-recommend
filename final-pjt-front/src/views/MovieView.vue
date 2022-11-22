@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MovieView</h1>
+    <h1>Movies</h1>
     <MovieList/>
   </div>
 </template>

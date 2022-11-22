@@ -26,7 +26,9 @@ export default {
     this.getArticles()
   },
   mounted() {
-    this.$router.push({ name: 'articleList' }).catch(()=> {}) // 게시판 누르면 전체 게시판이 보이게 하기
+    if (this.isLogin) {
+      this.$router.push({ name: 'articleList' }).catch(()=> {}) // 게시판 누르면 전체 게시판이 보이게 하기
+    }
   },
   methods: {
     getArticles() {

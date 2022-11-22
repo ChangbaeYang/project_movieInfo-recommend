@@ -16,11 +16,11 @@
     <hr>
     <p>Comments</p>
     <CommentsListItem
-      v-for="comment in articleComments.slice().reverse()"
+      v-for="comment in comments.slice().reverse()"
       :key="comment.id"
       :comment="comment"
-      :article="article"
-    />
+      @delete-comment="deleteComment"
+    /> 
     <form @submit.prevent="createComment">
       <input type="textarea" v-model.trim="comment">
       <input type="submit" id="submit">
@@ -40,16 +40,19 @@ export default {
   },
   data() {
     return {
-      article: {
-        id: 0, // 에러 방지용 임시.
-      },
-      comments: [], // 보여줄 댓글
       comment: null,  // 입력되는 댓글
     }
   },
   computed: {
-    articleComments() {
-      return this.comments 
+    article() {
+      return this.$store.state.article
+    },
+    comments() {
+      if (this.$store.state.comments) {     // 댓글이 있다면 받아오기
+        return this.$store.state.comments
+      } else {                              // 댓글이 없다면 빈값
+        return []
+      }
     },
   },
   created() {
@@ -58,68 +61,46 @@ export default {
   },
   methods: {
     getArticleDetail() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then((res) => {
-          this.article = res.data
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$store.dispatch('getArticleDetail', this.$route.params.id)
     },
     goBack() {
       this.$router.push({ name: 'articles' })
     },
     deleteArticle() {
+      // this.$store.dispatch('deleteArticle', this.$route.params.id)
       axios({
         method: 'delete',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}`
+        url: `${API_URL}/api/v2/articles/${this.article.id}`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
       })
-        .then((res) => {
-          this.article = res.data
+        .then(() => {
+          // console.log(res)
+          // context.commit('DELETE_ARTICLE', res.data)
+          alert('성공적으로 삭제되었습니다!')
           this.$router.push({ name: 'articles' })
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          alert('글을 삭제할 권한이 없습니다.')
         })
     },
     getComments() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}/comments/`
-      })
-        .then((res) => {
-          // console.log(res)
-          this.comments = res.data // 객체 댓글의 배열이 있다. [{0번댓글}, {1번댓글}, ...]
-        })
+      this.$store.dispatch('getComments', this.$route.params.id)
     },
     createComment() {
-      const comment = this.comment
-      if (!comment) {
-        alert('내용을 입력해주세요')
+      if (!this.comment) {
+        alert('내용을 입력하세요~!')
+      } else {
+        let payload = [this.comment, this.$route.params.id]
+        this.$store.dispatch('createComment', payload)
+        this.comment = ''
       }
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v2/articles/${this.article.id}/comments/`,
-        data: {
-          content: comment,
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then(() => {
-          this.comment = ''
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     },
+    deleteComment(commentData) {
+      let payload = [commentData, this.article.id]
+      this.$store.dispatch('deleteComment', payload)
+    }
   }
 }
 </script>

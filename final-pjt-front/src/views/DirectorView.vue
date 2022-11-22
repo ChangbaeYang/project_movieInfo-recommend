@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Director</h1>
+    <h1>Directors</h1>
     <DirectorList/>
   </div>
 </template>

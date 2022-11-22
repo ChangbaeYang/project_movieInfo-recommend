@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>ActorView</h1>
+    <h1>Actors</h1>
     <ActorList/>
   </div>
 </template>
