@@ -134,3 +134,42 @@ def director_like(request, director_pk):
         'director_like_count': director.like_users.count()
     } 
     return Response(context)
+
+@api_view  (['POST'])
+def recommend(request):
+#높은 평점영화
+  high_vote_average_movies = Movie.objects.all().order_by('vote_average')[:20]
+  vote_serializer = MovieSerializer(high_vote_average_movies, many=True)
+
+  # 좋아요 기반
+  users_movies = []
+
+  like_movies = request.data.get('like_movies')
+  for like_movie in like_movies:
+    movie = get_object_or_404(Movie, pk=like_movie)
+    if not movie in users_movies:
+      users_movies.append(movie)
+  
+  return Response([vote_serializer.data])
+
+#  movie_id 획득
+# 1. user가 좋아요한 영화 data 받아오기  	
+# -> like_movies = request.data.get('movies_movie_like_users')
+ 
+# 2. movie & gener 중계테이블 받아ㅗㅇ기
+# -> movie_genre =  request.data.get('movies_movie_genres')
+
+# 3. user id 기반으로 좋아하는 영화를 for문 순회하면서 movie_genre와 대조, 
+# 일치하면 key: value형태로 recommend_list에 append 한다
+
+# -> 
+# recommend_list = []
+# for i in likemovies:
+# 	check = 0
+# 	for j in movie_genre:
+# 	i['movie_id'] == j['movie_id']
+	
+# 	recommend_list.append({'movie_id' : })
+	
+
+ 

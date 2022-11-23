@@ -1,5 +1,5 @@
 <template>
-  <article class="d-flex justify-content-center align-items-center col-xs-12 col-sm-3 mb-3">
+  <article class="d-flex justify-content-flex-end align-items-end col-xs-12 col-sm-3 mb-3">
     <div @click="showDirectorModal" class="card h-100" style="width: 30rem; cursor:pointer">
       <img :src="imgURL" class="card-img-top" :alt="director.name" @error="replaceImg">
       <div class="card-body">

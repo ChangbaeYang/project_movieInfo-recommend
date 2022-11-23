@@ -8,12 +8,18 @@ import SignUpView from '@/views/SignUpView'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleList from '@/views/ArticleList'
 import PageNotFound from '@/views/PageNotFound'
+import App from '/'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'app',
+    component: App
+  },
+  {
+    path: '/movies',
     name: 'movies',
     component: MovieView
   },

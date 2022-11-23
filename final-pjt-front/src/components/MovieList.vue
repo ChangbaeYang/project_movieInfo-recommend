@@ -29,6 +29,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.container {
+  background-color:black ;
+  margin-right: 0px;
+  padding-right: 0px;
+  width: 100%;
+  height: 100%;
+}
 
 </style>

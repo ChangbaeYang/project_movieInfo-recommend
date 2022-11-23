@@ -9,6 +9,7 @@
       <router-link :to="{ name : 'myLikes' }">좋아하는 영화</router-link> |
       <router-link :to="{ name : 'recommendation' }">추천 영화</router-link> 
     </nav>
+    <img src="../assets/no_image.png" alt="">
     <router-view/>
   </div>
 </template>

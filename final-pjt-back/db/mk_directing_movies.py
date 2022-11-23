@@ -27,8 +27,11 @@ for director_id in director_list:
         if 'crew' not in credits_data:
             credits_data['crew'] = ''
         for k in credits_data['crew']:
-            if k['id'] == director_id:
+            if k['id'] == int(director_id):
                 director_movie_list.append({'director_id': director_id, 'movie_id': movie_id})
+                movie_list.remove(movie_id)
+                print('heelo')
+                break
                 
 df_movie = pd.DataFrame(director_movie_list)
 df_movie.to_csv('directingmovie.csv' ,encoding='utf-8-sig')
