@@ -1,5 +1,5 @@
 <template>
-  <article class="d-flex justify-content-center align-items-center col-xs-12 col-sm-3 mb-3">
+  <article class="d-flex justify-content-center align-items-center col-xs-12 col-sm-4 mb-4">
     <div @click="showMovieModal" class="card h-100" style="width: 30rem; cursor:pointer">
       <img :src="imgURL" class="card-img-top" :alt="movie.title" @error="replaceImg">
     </div>
@@ -49,7 +49,7 @@ import DetailModal from '@/components/DetailModal'
 import noImg from '../assets/no_image.png'
 
 export default {
-  name: 'MovieListItem',
+  name: 'SearchResultMovie',
   data () {
     return {
       imgURL: `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`,

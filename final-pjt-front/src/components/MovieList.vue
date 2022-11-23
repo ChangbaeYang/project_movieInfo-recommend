@@ -23,9 +23,6 @@ export default {
       return this.$store.state.movies
     }
   },
-  created() {
-    this.$store.dispatch('getMovies')
-  }
 }
 </script>
 

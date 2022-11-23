@@ -41,7 +41,7 @@ import DetailModal from '@/components/DetailModal'
 import noImg from '../assets/no_image.png'
 
 export default {
-  name: "ActorListItem",
+  name: "SearchResultActor",
   data() {
     return {
       imgURL: `https://image.tmdb.org/t/p/w500${this.actor.profile_path}`,

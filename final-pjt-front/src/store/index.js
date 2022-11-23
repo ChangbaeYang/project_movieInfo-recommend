@@ -182,20 +182,24 @@ export default new Vuex.Store({
       // console.log(selected_director)
       state.director = selected_director
       state.director_like_count = selected_director.like_users.length
-      if (selected_director.like_users.includes(state.user_info.pk)) {
-        // 이미 좋아요를 누른 상태라면
-        state.director_liked = true
-      } else {
-        state.director_liked = false
+      if (state.token) {
+        if (selected_director.like_users.includes(state.user_info.pk)) {
+          // 이미 좋아요를 누른 상태라면
+          state.director_liked = true
+        } else {
+          state.director_liked = false
+        }
       }
     },
     SELECT_MOVIE(state, selected_movie) {
       state.movie = selected_movie
       state.movie_like_count = selected_movie.like_users.length
-      if (selected_movie.like_users.includes(state.user_info.pk)) {
-        state.movie_liked = true
-      } else {
-        state.movie_liked = false
+      if (state.token) {
+        if (selected_movie.like_users.includes(state.user_info.pk)) {
+          state.movie_liked = true
+        } else {
+          state.movie_liked = false
+        }
       }
     },
     RECOMMEND_MOVIE(state, recomMovie) {
@@ -238,7 +242,7 @@ export default new Vuex.Store({
     },
     SEARCH_RESULT(state, search_result) {
       state.search_result = search_result
-      // router.push({name: })
+      router.push({ name : 'searchResult'})
     }
   },
   actions: {

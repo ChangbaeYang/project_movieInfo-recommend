@@ -23,9 +23,6 @@ export default {
       return this.$store.state.actors
     }
   },
-  created() {
-    this.$store.dispatch('getActors')
-  }
 }
 </script>
 

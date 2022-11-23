@@ -23,9 +23,6 @@ export default {
       return this.$store.state.directors
     }
   },
-  created() {
-    this.$store.dispatch('getDirectors')
-  }
 }
 </script>
 

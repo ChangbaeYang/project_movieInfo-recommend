@@ -44,6 +44,12 @@ export default {
       searchData: null,
     }
   },
+  created() {
+    this.$store.dispatch('getMovies')
+    this.$store.dispatch('getGenres')
+    this.$store.dispatch('getActors')
+    this.$store.dispatch('getDirectors')
+  },
   computed: {
     isLogin() {
       if (this.$store.state.token) { // 로그인이 되어있다면
@@ -58,6 +64,7 @@ export default {
   },
   methods: {
     logOut() {
+      this.$router.push('movies')
       this.$store.commit('LOGOUT_USER')
       this.$store.dispatch('logOut')
     },
