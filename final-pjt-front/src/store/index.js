@@ -4,7 +4,7 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 // import SecureLS from "secure-ls"
 // var ls = new SecureLS({ isCompression: false })
-
+import _ from 'lodash'
 import router from '@/router'
 
 Vue.use(Vuex)
@@ -38,6 +38,7 @@ export default new Vuex.Store({
     movie_liked: false,
     movie_like_count: 0,
     like_movies: [],
+    like_movies_info: [],
     article: null, // 선택한 하나의 게시글 정보를 담고 있다.
     comments: null, // 선택한 하나의 게시글의 댓글정보
   },
@@ -85,6 +86,26 @@ export default new Vuex.Store({
         }
       })
     },
+    GET_LIKE_MOVIE_INFO(state) {
+      for (let like_movie_id of state.like_movies) {
+        for (let movie of state.movies) {
+          if (movie.id === like_movie_id) { // 일치한다면
+            let a = true
+            for (let like_movie_info of state.like_movies_info) {
+              if (movie.id === like_movie_info.id) {
+                a = false
+              }
+            }
+            if (a) {
+              state.like_movies_info.push(movie)
+            }
+          }
+        }
+      }
+    },
+    DELETE_LIKE_MOVIE_INFO(state) {
+      state.like_movies_info = []
+    },
 //////////////////////// 영화정보관련 ///////////////////////////////
     // 영화 정보
     GET_MOVIES(state, movies) {
@@ -121,9 +142,9 @@ export default new Vuex.Store({
       // console.log(payload)
       state.director_liked = payload.director_liked
       state.director_like_count = payload.director_like_count
-      console.log(payload.director_id)
+      // console.log(payload.director_id)
       if (state.like_directors.includes(payload.director_id)) {
-        console.log('hi')
+        // console.log('hi')
         for (let i = 0; i < state.like_directors.length; i++) {
           if (state.like_directors[i] === payload.director_id) {
             state.like_directors.splice(i, 1)
@@ -135,10 +156,12 @@ export default new Vuex.Store({
       }
     },
     LIKE_MOVIE(state, payload) {
+      // console.log(payload)
+      // console.log(state.like_movies)
       state.movie_liked = payload.movie_liked
       state.movie_like_count = payload.movie_like_count
       if (state.like_movies.includes(payload.movie_id)) {
-        for (let i = 0; i < state.like_movies; i++) {
+        for (let i = 0; i < state.like_movies.length; i++) {
           if (state.like_movies[i] === payload.movie_id) {
             state.like_movies.splice(i, 1)
             i--
@@ -460,6 +483,7 @@ export default new Vuex.Store({
         },
       })
         .then((res) => {
+          // console.log(res.data)
           context.commit('LIKE_MOVIE', res.data)
         })
         .catch((err) => {
@@ -482,4 +506,28 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    recommendRandomMovie(context) {
+      // 좋아요한 영화를 제외한 영화중에서 하나를 추천하자.
+      let pull_of_movies = []
+      for (let movie of this.state.movies) {
+        if (!context.state.like_movies.include(movie.id)) {
+          pull_of_movies.push(movie) // 여기엔 뮤비 정보가 다 들어있다.
+        }
+      }
+      // 그중에서 랜덤하게 3개의 영화를 추천한다.
+      _.sampleSzie(_.pull_of_movies, 3) // ****************************여기서 하자. *********************//
+    }
+    // recommendMovie(context) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/movies/recommend/`,
+    //   })
+    //   .then((res) => {
+    //     context.commit('RECOMMENDMOVIE')
+    //     console.log(res)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+    // }
   })

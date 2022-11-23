@@ -7,6 +7,9 @@
 <script>
 export default {
   name: "MyRecommendation",
+  created() {
+    this.$store.dispatch('recommendRandomMovie')
+  }
 }
 </script>
 

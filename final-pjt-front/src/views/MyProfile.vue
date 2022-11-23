@@ -20,7 +20,7 @@ export default {
     username() {
       return this.$store.state.user_info.username
     }
-  }
+  },
 }
 </script>
 

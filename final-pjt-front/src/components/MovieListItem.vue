@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import DetailModal from '@/components/DetailModal';
+import DetailModal from '@/components/DetailModal'
 import noImg from '../assets/no_image.png'
 
 export default {

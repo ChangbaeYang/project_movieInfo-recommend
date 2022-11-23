@@ -139,6 +139,7 @@ def director_like(request, director_pk):
 @api_view(['POST'])
 def movie_like(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
+    # print(movie)
     if movie.like_users.filter(pk=request.user.pk).exists():
         movie.like_users.remove(request.user.pk)
         movie_liked = False
@@ -151,3 +152,21 @@ def movie_like(request, movie_pk):
         'movie_like_count': movie.like_users.count()
     }
     return Response(context)
+
+# @api_view(['GET'])
+# def movie_recommend(request):
+#     # 추천 영화를 몇개를 보여줄까.
+#     # 좋아하는 영화 -> 장르, 평점, 최신작
+#     genre = get_list_or_404(Genre)
+#     movies = get_list_or_404(Movie)
+#     like_movies = movies.like_users.filter(pk=request.user.pk)
+#     # 좋아하는 감독 -> 좋아하는 감독의 다른 작품은 다 넣자.(무조건 넣자.)
+#     directors = get_list_or_404(Director)
+#     like_directors = directors.like_users.filter(pk=request.user.pk) # 요청한 유저의 좋아요 감독만 뽑는다.(아이디 값)
+#     like_directors_directing_movies = like_directors.directing_movies.all() # 좋아요된 감독들의 디렉팅한 작품들
+#     directing_serializer = MovieListSerializer()
+#     if like_movies.length() == 0 or like_directors.length() == 0:
+#         context = {
+#             'No answer': True,
+#         }
+#         return Response(context)
