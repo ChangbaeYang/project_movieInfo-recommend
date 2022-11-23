@@ -30,6 +30,7 @@ export default new Vuex.Store({
     recomMovie: null,
   
     // 인스턴스 정보 관련
+    search_result: null,
     director: null, // 선택한 하나의 감독 정보를 담고 있다.
     director_liked: false, // 유저가 감독을 좋아하는지를 담고 있다.
     director_like_count: 0,
@@ -234,6 +235,10 @@ export default new Vuex.Store({
           }
         }
       }
+    },
+    SEARCH_RESULT(state, search_result) {
+      state.search_result = search_result
+      // router.push({name: })
     }
   },
   actions: {
@@ -482,14 +487,116 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // searchUp(context, searchData) {
-    //   search_result = []
-      // 영화 검색(제목, 장르, 내용)
-
-      // 배우 검색(이름, 영화, 출연작, 연혁)
-
+    // 어떻게 영화, 배우, 감독을 같이 저장해서 보여줄까?
+    searchUp(context, searchData) {
+      let search_result = []
+      // 영화 검색(제목, 장르) - 대소문자 통일해서하기
+      for (let movie of context.state.movies) {
+        // 제목
+        if (movie.title.toLowerCase().includes(searchData.toLowerCase())) {
+          search_result.push(movie)
+        }
+        // 장르 -> 따로 만들어둘까...?
+        let movie_genres_list = []
+        for (let movie_genre of movie.genres) {
+          if (movie_genre === 12) {
+            movie_genres_list.push('adventure')
+          } else if (movie_genre === 14) {
+            movie_genres_list.push('fantasy')
+          } else if (movie_genre === 16) {
+            movie_genres_list.push('animation')
+          } else if (movie_genre === 18) {
+            movie_genres_list.push('drama')
+          } else if (movie_genre === 27) {
+            movie_genres_list.push('horror')
+          } else if (movie_genre === 28) {
+            movie_genres_list.push('action')
+          } else if (movie_genre === 35) {
+            movie_genres_list.push('comedy')
+          } else if (movie_genre === 36) {
+            movie_genres_list.push('history')
+          } else if (movie_genre === 37) {
+            movie_genres_list.push('western')
+          } else if (movie_genre === 53) {
+            movie_genres_list.push('thriller')
+          } else if (movie_genre === 80) {
+            movie_genres_list.push('crime')
+          } else if (movie_genre === 99) {
+            movie_genres_list.push('documentary')
+          } else if (movie_genre === 878) {
+            movie_genres_list.push('science fiction')
+          } else if (movie_genre === 9648) {
+            movie_genres_list.push('mystery')
+          } else if (movie_genre === 10402) {
+            movie_genres_list.push('music')
+          } else if (movie_genre === 10749) {
+            movie_genres_list.push('romance')
+          } else if (movie_genre === 10751) {
+            movie_genres_list.push('family')
+          } else if (movie_genre === 10752) {
+            movie_genres_list.push('war')
+          } else if (movie_genre === 10770) {
+            movie_genres_list.push('tv')
+            movie_genres_list.push('tv movie')
+          }
+        }
+        // 장르로 검색되면 넣기
+        for (let movie_genre of movie_genres_list) {
+          if (searchData.toLowerCase().includes(movie_genre) && !search_result.includes(movie)) {
+            search_result.push(movie)
+          }
+        }
+      }
+      // 배우 검색(이름, 영화, 필모)
+      for (let actor of context.state.actors) {
+        // 이름
+        if (actor.name.toLowerCase().includes(searchData.toLowerCase()) && !search_result.includes(actor)) {
+          search_result.push(actor)
+        }
+        // 필모
+        if (actor.biography.includes(searchData) && !search_result.includes(actor)) {
+          search_result.push(actor)
+        }
+        // 출연작
+        // 출연작을 문자열로 바꾸는 과정
+        let acting_movies = []
+        for (let acting_movie of actor.acting_movies) {
+          for (let movie of context.state.movies) {
+            if (acting_movie === movie.id) {
+              acting_movies.push(movie.title)
+            }
+          }
+        }
+        // 문자열로 고쳐진 것을 인풋과 비교
+        for (let acting_movie of acting_movies) {
+          if (acting_movie.toLowerCase().includes(searchData.toLowerCase()) && !search_result.includes(actor)) {
+            search_result.push(actor)
+          }
+        }
+      }
       // 감독 검색(이름, 감독작품)
-
+      for (let director of context.state.directors) {
+        // 이름
+        if (director.name.toLowerCase().includes(searchData.toLowerCase()) && !search_result.includes(director)) {
+          search_result.push(director)
+        }
+        // 감독 작품 먼저 문자열로 치환
+        let directing_movies = []
+        for (let directing_movie of director.directing_movies) {
+          for (let movie of context.state.movies) {
+            if (directing_movie === movie.id) {
+              directing_movies.push(movie.title)
+            }
+          }
+        }
+        // 문자열로 치환된 것을 인풋과 비교
+        for (let directing_movie of directing_movies) {
+          if (directing_movie.toLowerCase().includes(searchData.toLowerCase()) && !search_result.includes(director)) {
+            search_result.push(director)
+          }
+        }
+      }
+      this.commit('SEARCH_RESULT', search_result)
       // 이건 영화 제목으로 검색하는 것 - 실패 대비용 백업
       // axios({
       //   method: 'get',
@@ -505,7 +612,7 @@ export default new Vuex.Store({
       // .catch((err) => {
       //   console.log(err)
       // })
-    // },
+    },
     recommendRandomMovie(context) {
       // 좋아요한 영화를 제외한 영화중에서 하나를 추천하자.
       let pull_of_movies = []
