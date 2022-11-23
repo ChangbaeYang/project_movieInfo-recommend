@@ -33,6 +33,11 @@ export default new Vuex.Store({
     director: null, // 선택한 하나의 감독 정보를 담고 있다.
     director_liked: false, // 유저가 감독을 좋아하는지를 담고 있다.
     director_like_count: 0,
+    like_directors: [],
+    movie: null, // 선택한 하나의 영화 정보를 담고 있다.
+    movie_liked: false,
+    movie_like_count: 0,
+    like_movies: [],
     article: null, // 선택한 하나의 게시글 정보를 담고 있다.
     comments: null, // 선택한 하나의 게시글의 댓글정보
   },
@@ -45,6 +50,12 @@ export default new Vuex.Store({
     },
     director_like_count(state) { // 클릭한 감독의 정보를 받아서 넣어주면 될듯 하다. 
       return state.director_like_count
+    },
+    movie_liked(state) {
+      return state.movie_liked
+    },
+    movie_like_count(state) {
+      return state.movie_like_count
     },
     comments(state) {
       return state.comments
@@ -99,6 +110,8 @@ export default new Vuex.Store({
       state.user_info = null
       state.my_articles = []
       state.my_comments = []
+      state.like_directors = []
+      state.like_movies = []
       router.replace('/').catch(() => {})
     },
     GET_USER_INFO(state, user_data) {
@@ -108,6 +121,32 @@ export default new Vuex.Store({
       // console.log(payload)
       state.director_liked = payload.director_liked
       state.director_like_count = payload.director_like_count
+      console.log(payload.director_id)
+      if (state.like_directors.includes(payload.director_id)) {
+        console.log('hi')
+        for (let i = 0; i < state.like_directors.length; i++) {
+          if (state.like_directors[i] === payload.director_id) {
+            state.like_directors.splice(i, 1)
+            i--
+          }
+        }
+      } else {
+        state.like_directors.push(payload.director_id)
+      }
+    },
+    LIKE_MOVIE(state, payload) {
+      state.movie_liked = payload.movie_liked
+      state.movie_like_count = payload.movie_like_count
+      if (state.like_movies.includes(payload.movie_id)) {
+        for (let i = 0; i < state.like_movies; i++) {
+          if (state.like_movies[i] === payload.movie_id) {
+            state.like_movies.splice(i, 1)
+            i--
+          }
+        }
+      } else {
+        state.like_movies.push(payload.movie_id)
+      }
     },
     SELECT_DIRECTOR(state, selected_director) {
       // console.log(selected_director)
@@ -120,8 +159,20 @@ export default new Vuex.Store({
         state.director_liked = false
       }
     },
+    SELECT_MOVIE(state, selected_movie) {
+      state.movie = selected_movie
+      state.movie_like_count = selected_movie.like_users.length
+      if (selected_movie.like_users.includes(state.user_info.pk)) {
+        state.movie_liked = true
+      } else {
+        state.movie_liked = false
+      }
+    },
     CLOSE_DIRECTOR_MODAL(state) {
       state.director = null
+    },
+    CLOSE_MOVIE_MODAL(state) {
+      state.movie = null
     },
 /////////////////////////////프로필관련///////////////////////////////////
     GET_MY_ARTICLE(state) {
@@ -180,12 +231,12 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v2/articles/${article_id}/`,
       })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_ARTICLE_DETAIL', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
+      .then((res) => {
+        // console.log(res.data)
+        context.commit('GET_ARTICLE_DETAIL', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
       })
     },
     /////////////////////댓글/////////////////////////////////////////
@@ -194,13 +245,13 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v2/articles/${article_id}/comments/`,
       })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_COMMENTS', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        // console.log(res.data)
+        context.commit('GET_COMMENTS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     createComment(context, payload) {
       axios({
@@ -213,13 +264,13 @@ export default new Vuex.Store({
           content: payload[0]
         }
       })
-        .then((res) => {
-          context.commit('CREATE_COMMENT', res.data)
-          // console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        context.commit('CREATE_COMMENT', res.data)
+        // console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     deleteComment(context, payload) {
       axios({
@@ -229,14 +280,14 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
       })
-        .then((res) => {
-          context.commit('DELETE_COMMENT', res.data)
-          alert('성공적으로 댓글이 삭제되었습니다!')
-        })
-        .catch((err) => {
-          console.log(err)
-          alert('댓글을 지울 권한이 없습니다.')
-        })
+      .then((res) => {
+        context.commit('DELETE_COMMENT', res.data)
+        alert('성공적으로 댓글이 삭제되었습니다!')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('댓글을 지울 권한이 없습니다.')
+      })
     },
     getMyArticle(context) {
       context.dispatch('getArticles') // 바로 유저정보에 갔을 경우를 대비한다.
@@ -247,10 +298,10 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v2/comments/`
       })
-        .then((res) => {
-          // console.log(res)
-          context.commit('GET_ALL_COMMENT', res.data)
-        })
+      .then((res) => {
+        // console.log(res)
+        context.commit('GET_ALL_COMMENT', res.data)
+      })
     },
     getMyComment(context){
       context.dispatch('getAllComment')
@@ -262,48 +313,48 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
       })
-        .then((res) => {
-          context.commit('GET_MOVIES', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        context.commit('GET_MOVIES', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     getActors(context) {
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/actors/`,
       })
-        .then((res) => {
-          context.commit('GET_ACTORS', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        context.commit('GET_ACTORS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     getDirectors(context) {
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/directors/`,
       })
-        .then((res) => {
-          context.commit('GET_DIRECTORS', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        context.commit('GET_DIRECTORS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     getGenres(context) {
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/genres/`,
       })
-        .then((res) => {
-          context.commit('GET_GENRES', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        context.commit('GET_GENRES', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
 ///////////////////회원가입 & 로그인 & 로그아웃 & 회원정보///////////////////////////
     signUp(context, payload) {
@@ -316,11 +367,11 @@ export default new Vuex.Store({
           password2: payload.password2,
         }
       })
-        .then((res) => {
-          // console.log(res.data.key)
-          context.commit('SAVE_TOKEN', res.data.key)
-        })
-      },
+      .then((res) => {
+        // console.log(res.data.key)
+        context.commit('SAVE_TOKEN', res.data.key)
+      })
+    },
     getUserInfo(context) {
       axios({
         method: 'get',
@@ -340,8 +391,8 @@ export default new Vuex.Store({
               Authorization: `Token ${context.state.token}`
             },
           })
-          .then((res) => {
-            console.log(res)
+          .then(() => {
+            // console.log(res)
           })
         })
         .catch((err) => {
@@ -358,8 +409,13 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
+          alert('성공적으로 로그인되었습니다!')
           context.commit('SAVE_TOKEN', res.data.key)
           this.dispatch('getUserInfo')
+        })
+        .error((err) => {
+          console.log(err)
+          // alert('로그인정보가 잘못되었습니다!')
         })
     },
     logOut(context) {
@@ -375,6 +431,9 @@ export default new Vuex.Store({
     selectDirector(context, selectedDirector) {
       // console.log(selectedDirector)
       context.commit('SELECT_DIRECTOR', selectedDirector)
+    },
+    selectMovie(context, selectedMovie) {
+      context.commit('SELECT_MOVIE', selectedMovie)
     },
     likeDirector(context, payload) {
       axios({
@@ -392,6 +451,22 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    likeMovie(context, payload) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/movies/${payload}/like/`, // payload에는 movie.id가 들어있다.
+        headers: {
+          Authorization: `Token ${this.state.token}`
+        },
+      })
+        .then((res) => {
+          context.commit('LIKE_MOVIE', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+    },
     searchUp(context, searchData) {
       axios({
         method: 'get',
@@ -400,12 +475,11 @@ export default new Vuex.Store({
           search_data: searchData,
         },
       })
-        .then((res) => {
-          console.log(res.data) // 배열로 나온다.
+        .then(() => {
+          // console.log(res.data) // 배열로 나온다.
         })
         .catch((err) => {
           console.log(err)
         })
     },
-  },
-})
+  })

@@ -130,7 +130,24 @@ def director_like(request, director_pk):
         director.like_users.add(request.user.pk)
         director_liked = True
     context={
+        'director_id': director_pk,
         'director_liked': director_liked,
         'director_like_count': director.like_users.count()
     } 
+    return Response(context)
+
+@api_view(['POST'])
+def movie_like(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if movie.like_users.filter(pk=request.user.pk).exists():
+        movie.like_users.remove(request.user.pk)
+        movie_liked = False
+    else:
+        movie.like_users.add(request.user.pk)
+        movie_liked = True
+    context={
+        'movie_id': movie_pk,
+        'movie_liked': movie_liked,
+        'movie_like_count': movie.like_users.count()
+    }
     return Response(context)

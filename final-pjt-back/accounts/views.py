@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, UserLikeSerializer
 
+
 # Create your views here.
 @api_view(['POST'])
 def signup(request):

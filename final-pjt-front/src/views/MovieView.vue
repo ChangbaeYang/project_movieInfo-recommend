@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Movies</h1>
+    <h1 id="title">Movies</h1>
     <MovieList/>
   </div>
 </template>
@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+#title {
+  color: rgb(148, 154, 158)
+}
 </style>

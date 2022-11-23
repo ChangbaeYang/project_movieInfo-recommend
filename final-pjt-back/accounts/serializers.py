@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserLikeSerializer(serializers.ModelSerializer):
-    like_movies = serializers.IntegerField(source='user.like_movies', read_only=True)
+    like_movies = serializers.IntegerField(source='like_movies.all', read_only=True)
     
     class Meta:
         model = User

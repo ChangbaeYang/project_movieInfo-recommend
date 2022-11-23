@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MyProfile</h1>
+    <h1>{{ username }}</h1>
     <hr>
     <nav>
       <router-link :to="{ name : 'myArticles' }">내가 쓴 게시글</router-link> | 
@@ -16,6 +16,11 @@
 <script>
 export default {
   name: 'MyProfile',
+  computed: {
+    username() {
+      return this.$store.state.user_info.username
+    }
+  }
 }
 </script>
 

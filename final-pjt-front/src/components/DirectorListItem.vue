@@ -22,8 +22,8 @@
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
                 <p class="card-text"><small class="text-muted">{{ directorLikeCount }} like this director </small></p>
-                <p :class="{ 'display-none': Liked}" @click="likeDirector">❤</p>
-                <p :class="{ 'display-none': !Liked}" @click="likeDirector">💖</p>
+                <p :class="{ 'display-none': Liked }" @click="likeDirector">❤</p>
+                <p :class="{ 'display-none': !Liked }" @click="likeDirector">💖</p>
               </div>
             </div>
           </div>
@@ -80,11 +80,12 @@ export default {
     Liked() {
       if (!this.isLogin) {
         return false
-      }
-      if (this.$store.getters.director_liked) {
-        return true
       } else {
-        return false
+        if (this.$store.getters.director_liked) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     directorLikeCount() {
@@ -116,7 +117,7 @@ export default {
         this.$store.dispatch('likeDirector', this.director.id)
       } else {
         this.$router.push({ name: 'login'})
-        alert('💖로그인이 필요한 기능입니다!💖')
+        alert('로그인이 필요한 기능입니다!🤣')
       }
     },
   }
@@ -126,8 +127,5 @@ export default {
 <style>
 .display-none {
   display: none;
-}
-.display-block {
-  display: block;
 }
 </style>
