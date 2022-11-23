@@ -108,7 +108,6 @@ export default {
     },
     closeModal() {
       // 여기에서 기존 디렉터 정보를 지우자.
-      this.$store.dispatch('CLOSE_DIRECTOR_MODAL')
       this.directorModal = false
       document.body.style.overflow = 'unset'
     },

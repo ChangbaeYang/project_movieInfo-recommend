@@ -118,7 +118,6 @@ export default {
       e.target.src = noImg
     },
     closeModal() {
-      this.$store.dispatch('CLOSE_MOVIE_MODAL')
       this.movieModal = false
       document.body.style.overflow = 'unset'
     },
@@ -137,8 +136,5 @@ export default {
 <style>
 .display-none {
   display: none;
-}
-#background-for-poster {
-  background-image: url("")
 }
 </style>

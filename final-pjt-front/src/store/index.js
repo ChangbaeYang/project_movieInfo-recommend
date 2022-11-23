@@ -27,8 +27,8 @@ export default new Vuex.Store({
     user_info: null, // 유저 정보, 로그아웃할 때 지워주기
     my_articles: [],
     my_comments: [],
+    recomMovie: null,
   
-
     // 인스턴스 정보 관련
     director: null, // 선택한 하나의 감독 정보를 담고 있다.
     director_liked: false, // 유저가 감독을 좋아하는지를 담고 있다.
@@ -37,14 +37,17 @@ export default new Vuex.Store({
     movie: null, // 선택한 하나의 영화 정보를 담고 있다.
     movie_liked: false,
     movie_like_count: 0,
-    like_movies: [],
-    like_movies_info: [],
+    like_movies: [], // 좋아요 누른 영화의 id 정보가 들어가 있음
+    like_movies_info: [], // 좋아요 누른 영화의 모든 정보가 담겨 있음
     article: null, // 선택한 하나의 게시글 정보를 담고 있다.
     comments: null, // 선택한 하나의 게시글의 댓글정보
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
+    },
+    recomMovie(state) {
+      return state.recomMovie
     },
     director_liked(state) {
       return state.director_liked
@@ -191,11 +194,9 @@ export default new Vuex.Store({
         state.movie_liked = false
       }
     },
-    CLOSE_DIRECTOR_MODAL(state) {
-      state.director = null
-    },
-    CLOSE_MOVIE_MODAL(state) {
-      state.movie = null
+    RECOMMEND_MOVIE(state, recomMovie) {
+      // console.log('hi')
+      this.state.recomMovie = recomMovie
     },
 /////////////////////////////프로필관련///////////////////////////////////
     GET_MY_ARTICLE(state) {
@@ -403,25 +404,25 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
       })
-        .then((res) => {
-          context.commit('GET_USER_INFO', res.data)
+      .then((res) => {
+        context.commit('GET_USER_INFO', res.data)
+      })
+      .then(() => {
+        axios({
+          method: 'get',
+          url: `${API_URL}/api/v3/userLikeMovie/${this.state.user_info.pk}/`,
+          headers: { // 아니라면 지우기
+            Authorization: `Token ${context.state.token}`
+          },
         })
         .then(() => {
-          axios({
-            method: 'get',
-            url: `${API_URL}/api/v3/userLikeMovie/${this.state.user_info.pk}/`,
-            headers: { // 아니라면 지우기
-              Authorization: `Token ${context.state.token}`
-            },
-          })
-          .then(() => {
-            // console.log(res)
-          })
+          // console.log(res)
         })
-        .catch((err) => {
-          console.log(err)
-        })
-      },
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     logIn(context, payload) {
       axios({
         method: 'post',
@@ -431,24 +432,24 @@ export default new Vuex.Store({
           password: payload.password,
         }
       })
-        .then((res) => {
-          alert('성공적으로 로그인되었습니다!')
-          context.commit('SAVE_TOKEN', res.data.key)
-          this.dispatch('getUserInfo')
-        })
-        .error((err) => {
-          console.log(err)
-          // alert('로그인정보가 잘못되었습니다!')
-        })
+      .then((res) => {
+        alert('성공적으로 로그인되었습니다!')
+        context.commit('SAVE_TOKEN', res.data.key)
+        this.dispatch('getUserInfo')
+      })
+      .error((err) => {
+        console.log(err)
+        // alert('로그인정보가 잘못되었습니다!')
+      })
     },
     logOut(context) {
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,
       })
-        .then(() => {
-          context.commit('LOGOUT_USER')
-        })
+      .then(() => {
+        context.commit('LOGOUT_USER')
+      })
     },
 /////////////////////////////////////////////////////////////////////
     selectDirector(context, selectedDirector) {
@@ -466,13 +467,13 @@ export default new Vuex.Store({
           Authorization: `Token ${this.state.token}`
         },
       })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('LIKE_DIRECTOR', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then((res) => {
+        // console.log(res.data)
+        context.commit('LIKE_DIRECTOR', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     likeMovie(context, payload) {
       axios({
@@ -482,14 +483,13 @@ export default new Vuex.Store({
           Authorization: `Token ${this.state.token}`
         },
       })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('LIKE_MOVIE', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      }
+      .then((res) => {
+        // console.log(res.data)
+        context.commit('LIKE_MOVIE', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     searchUp(context, searchData) {
       axios({
@@ -499,35 +499,102 @@ export default new Vuex.Store({
           search_data: searchData,
         },
       })
-        .then(() => {
-          // console.log(res.data) // 배열로 나온다.
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      .then(() => {
+        // console.log(res.data) // 배열로 나온다.
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     recommendRandomMovie(context) {
       // 좋아요한 영화를 제외한 영화중에서 하나를 추천하자.
       let pull_of_movies = []
+      // console.log('hi')
       for (let movie of this.state.movies) {
-        if (!context.state.like_movies.include(movie.id)) {
+        // console.log(movie)
+        if (!context.state.like_movies.includes(movie.id)) {
           pull_of_movies.push(movie) // 여기엔 뮤비 정보가 다 들어있다.
         }
       }
       // 그중에서 랜덤하게 3개의 영화를 추천한다.
-      _.sampleSzie(_.pull_of_movies, 3) // ****************************여기서 하자. *********************//
+      let recoRMovie = _.sampleSize(pull_of_movies, 3)
+      this.commit('RECOMMEND_MOVIE', recoRMovie)
+    },
+    /////////////추천 강화///////////////////////////////
+    recommendGoodMovie(context) {
+      let pull_of_movies = []
+      for (let movie of this.state.movies) {
+        // console.log(movie)
+        if (!context.state.like_movies.includes(movie.id)) {
+          pull_of_movies.push(movie) // 여기엔 뮤비 정보가 다 들어있다.
+        }
+      }
+      // 1. 좋아요에 누른 영화의 장르를 확인하고 가장 많은 장르를 찾는다.
+      let genre_count_list = new Array(10771) // 카운팅 정렬을 이용하자
+
+      for (let i = 0; i < genre_count_list.length; i++) {
+        genre_count_list[i] = 0
+      }
+
+      for (let like_movie of this.state.like_movies_info) {
+        let like_movie_genres = like_movie.genres // 뮤비장르 배열이 나옴. 예시) [액션id, 어드벤쳐id]
+        for (let like_movie_genre of like_movie_genres) {
+          genre_count_list[like_movie_genre] += 1
+        }
+      }
+      // 2. 가장 많이 좋아요된 장르를 찾는다.
+      const max_genre_value = Math.max.apply(null, genre_count_list) // 가장 큰 값
+      // 만약 여러개라면??? -> advanced! - clear
+      let love_genres = []
+      for (let i = 0; i < genre_count_list.length; i ++) {
+        if (genre_count_list[i] === max_genre_value) {
+          love_genres.push(i)
+        }
+      }
+      // 만약 하나의 장르가 나온다면 그냥 다음으로 넘기고 아니라면 랜덤으로 하나 픽한다.
+      let love_genre
+      if (love_genres.length === 1) {
+        love_genre = love_genres[0]
+      } else {
+        love_genre = _.sample(love_genres)
+      }
+      // console.log(love_genre)
+      // 3. 해당 영화들 중에서 인기 순으로 나열 후 6개까지 추천한다.
+      // 3-1. 먼저 좋아하는 장르의 영화를 추린다.
+      let love_genre_movies = [] // 좋아하는 장르의 영화가 담길 곳
+      for (let movie of this.state.movies) {
+        if (movie.genres.includes(love_genre)) {
+          if (!this.state.like_movies.includes(movie.id)) { // 좋아요 누른 영화는 제외한다.
+            love_genre_movies.push(movie)
+          }
+        }
+      }
+      // 3-2. 해당 장르 영화를 인기 순으로 나열(버블 정렬)
+      for (let i = 0; i < love_genre_movies.length; i++) {
+        let swap;
+        for (let j = 0; j < love_genre_movies.length - 1 - i; j++) {
+          if (love_genre_movies[j].vote_average > love_genre_movies[j+1].vote_average) {
+            swap = love_genre_movies[j]
+            love_genre_movies[j] = love_genre_movies[j + 1]
+            love_genre_movies[j + 1] = swap
+          }
+        }
+        if (!swap) {
+          break
+        }
+      }
+      // 3-3 나온 배열을 mutation에 보내서 6개까지 뽑자
+      let recoMovie
+      if (love_genre_movies.length >= 6) {
+        recoMovie = love_genre_movies.slice(0, 5)
+      } else if (love_genre_movies.length >= 1) {
+        recoMovie = love_genre_movies
+      } else { // 해당 장르의 영화가 하나도 없을 경우 랜덤으로
+        // console.log('nothing')
+        this.dispatch('recommendRandomMovie')
+        return
+      }
+      this.commit('RECOMMEND_MOVIE', recoMovie)
     }
-    // recommendMovie(context) {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/api/v1/movies/recommend/`,
-    //   })
-    //   .then((res) => {
-    //     context.commit('RECOMMENDMOVIE')
-    //     console.log(res)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-    // }
-  })
+  }
+})

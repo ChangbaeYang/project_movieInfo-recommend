@@ -25,8 +25,9 @@
           <button class="dropdown-item" v-if="isLogin" @click="logOut">Log-out</button>
          
         
-
-            <input v-model="searchData" @key.enter="searchUp" class="form-control me-2" type="search" placeholder="Movie_Search" aria-label="Search">
+          <form @submit.prevent="searchUp">
+            <input v-model="searchData" placeholder="Movie_Search">
+          </form>
 
             <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>
             <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
@@ -60,6 +61,7 @@ export default {
       this.$store.dispatch('logOut')
     },
     searchUp() {
+      // console.log(this.searchData)
       this.$store.dispatch('searchUp', this.searchData)
     },
   }
