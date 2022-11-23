@@ -29,9 +29,9 @@ export default {
   created() {
     this.$store.commit('GET_LIKE_MOVIE_INFO')
   },
-  destroyed() {
-    this.$store.commit('DELETE_LIKE_MOVIE_INFO')
-  },
+  // destroyed() {
+  //   this.$store.commit('DELETE_LIKE_MOVIE_INFO')
+  // },
 }
 </script>
 

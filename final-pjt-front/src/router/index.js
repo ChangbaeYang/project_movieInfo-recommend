@@ -7,14 +7,20 @@ import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleList from '@/views/ArticleList'
+import SearchResultView from '@/views/SearchResultView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/', // 메인페이지 바뀌면 바꾸기
     name: 'movies',
     component: MovieView
+  },
+  {
+    path: '/searchResult',
+    name: 'searchResult',
+    component: SearchResultView
   },
   {
     path: '/articles',

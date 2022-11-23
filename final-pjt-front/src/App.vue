@@ -5,24 +5,24 @@
 
    
      
-        <router-link class="nav-link active" aria-current="page" :to="{ name: 'movies' }" style="font-weight:bold;"> Movie </router-link> 
+        <router-link :to="{ name: 'movies' }" style="font-weight:bold;"> Movie </router-link> 
        
      
-         <router-link class="nav-link active" aria-current="page" :to="{ name: 'actors' }" style="font-weight:bold;"> Actor </router-link> 
+         <router-link :to="{ name: 'actors' }" style="font-weight:bold;"> Actor </router-link> 
      
         
-          <router-link class="nav-link active" aria-current="page" :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link> 
+          <router-link :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link> 
      
-            <router-link class="nav-link active" aria-current="page" :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
+            <router-link :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
         
          
       
           
-  
-            <router-link class="dropdown-item" v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link>
+            <router-link :to="{ name: 'searchResult' }"></router-link>
+            <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link>
          
            
-          <button class="dropdown-item" v-if="isLogin" @click="logOut">Log-out</button>
+          <button v-if="isLogin" @click="logOut">Log-out</button>
          
         
           <form @submit.prevent="searchUp">
@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     logOut() {
+      this.$store.commit('LOGOUT_USER')
       this.$store.dispatch('logOut')
     },
     searchUp() {

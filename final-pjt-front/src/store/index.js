@@ -106,9 +106,9 @@ export default new Vuex.Store({
         }
       }
     },
-    DELETE_LIKE_MOVIE_INFO(state) {
-      state.like_movies_info = []
-    },
+    // DELETE_LIKE_MOVIE_INFO(state) {
+    //   state.like_movies_info = []
+    // },
 //////////////////////// 영화정보관련 ///////////////////////////////
     // 영화 정보
     GET_MOVIES(state, movies) {
@@ -136,7 +136,10 @@ export default new Vuex.Store({
       state.my_comments = []
       state.like_directors = []
       state.like_movies = []
-      router.replace('/').catch(() => {})
+      state.like_movies_info = []
+      state.recomMovie = []
+      state.director = null
+      state.movie = null
     },
     GET_USER_INFO(state, user_data) {
       state.user_info = user_data
@@ -396,33 +399,6 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key)
       })
     },
-    getUserInfo(context) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/user/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
-      })
-      .then((res) => {
-        context.commit('GET_USER_INFO', res.data)
-      })
-      .then(() => {
-        axios({
-          method: 'get',
-          url: `${API_URL}/api/v3/userLikeMovie/${this.state.user_info.pk}/`,
-          headers: { // 아니라면 지우기
-            Authorization: `Token ${context.state.token}`
-          },
-        })
-        .then(() => {
-          // console.log(res)
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    },
     logIn(context, payload) {
       axios({
         method: 'post',
@@ -435,20 +411,35 @@ export default new Vuex.Store({
       .then((res) => {
         alert('성공적으로 로그인되었습니다!')
         context.commit('SAVE_TOKEN', res.data.key)
-        this.dispatch('getUserInfo')
       })
-      .error((err) => {
-        console.log(err)
-        // alert('로그인정보가 잘못되었습니다!')
+      .then(() => {
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+            Authorization: `Token ${context.state.token}`
+          },
+        })
+        .then((res) => {
+          // console.log(res)
+          context.commit('GET_USER_INFO', res.data)
+        })
+        // 유저의 좋아요 정보를 가져온다.
+        // .then(() => {
+        //   axios({
+        //     method: 'get',
+        //     url: `${API_URL}/api/v3/userLikeMovie/${this.state.user_info.pk}/`,
+        //     headers: {
+        //       Authorization: `Token ${context.state.token}`
+        //     },
+        //   })
+        // })
       })
     },
-    logOut(context) {
+    logOut() {
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,
-      })
-      .then(() => {
-        context.commit('LOGOUT_USER')
       })
     },
 /////////////////////////////////////////////////////////////////////
@@ -491,21 +482,30 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    searchUp(context, searchData) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/movies/search/${searchData}`,
-        data: {
-          search_data: searchData,
-        },
-      })
-      .then(() => {
-        // console.log(res.data) // 배열로 나온다.
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    },
+    // searchUp(context, searchData) {
+    //   search_result = []
+      // 영화 검색(제목, 장르, 내용)
+
+      // 배우 검색(이름, 영화, 출연작, 연혁)
+
+      // 감독 검색(이름, 감독작품)
+
+      // 이건 영화 제목으로 검색하는 것 - 실패 대비용 백업
+      // axios({
+      //   method: 'get',
+      //   url: `${API_URL}/api/v1/movies/search/${searchData}/`,
+      //   data: {
+      //     search_data: searchData,
+      //   },
+      // })
+      // .then((res) => {
+      //   router.push({ name: 'searchResult'})
+      //   // console.log(res.data) // 배열로 나온다.
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+    // },
     recommendRandomMovie(context) {
       // 좋아요한 영화를 제외한 영화중에서 하나를 추천하자.
       let pull_of_movies = []
@@ -524,9 +524,9 @@ export default new Vuex.Store({
     recommendGoodMovie(context) {
       let pull_of_movies = []
       for (let movie of this.state.movies) {
-        // console.log(movie)
+
         if (!context.state.like_movies.includes(movie.id)) {
-          pull_of_movies.push(movie) // 여기엔 뮤비 정보가 다 들어있다.
+          pull_of_movies.push(movie) // 여기엔 좋아요 안누른 뮤비 정보가 다 들어있다.
         }
       }
       // 1. 좋아요에 누른 영화의 장르를 확인하고 가장 많은 장르를 찾는다.
@@ -542,6 +542,11 @@ export default new Vuex.Store({
           genre_count_list[like_movie_genre] += 1
         }
       }
+      // console.log(genre_count_list[18])
+      // console.log(genre_count_list[27])
+      // console.log(genre_count_list[28])
+      // console.log(genre_count_list[53])
+      // console.log(genre_count_list[10749])
       // 2. 가장 많이 좋아요된 장르를 찾는다.
       const max_genre_value = Math.max.apply(null, genre_count_list) // 가장 큰 값
       // 만약 여러개라면??? -> advanced! - clear
@@ -583,8 +588,10 @@ export default new Vuex.Store({
           break
         }
       }
+      // console.log(love_genre)
       // 3-3 나온 배열을 mutation에 보내서 6개까지 뽑자
       let recoMovie
+      // console.log('hi')
       if (love_genre_movies.length >= 6) {
         recoMovie = love_genre_movies.slice(0, 5)
       } else if (love_genre_movies.length >= 1) {
