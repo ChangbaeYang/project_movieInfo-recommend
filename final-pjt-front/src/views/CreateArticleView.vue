@@ -2,16 +2,16 @@
   <div>
     <h1>게시글 작성</h1>
     <form @submit.prevent="createArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title"><br>
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br>
-      <label for="category">게시판 : </label>
       <select id="category" v-model="category">
         <option value=0>자유게시판</option>
         <option value=1>토론게시판</option>
         <option value=2>건의게시판</option>
       </select>
+      <label for="title">제목 : </label>
+      <input type="text" id="title" v-model.trim="title"><br>
+      <label for="content">내용 : </label>
+      <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br>
+      <label for="category">게시판 : </label>
       <input type="submit" id="submit">
     </form>
   </div>

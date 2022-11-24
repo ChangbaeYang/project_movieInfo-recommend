@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <h1>Home</h1>
-    
-    <a :href="{ name: 'articles' }">articles</a>
-    <a :href="{ name: 'movies' }">movies</a>
+  <div id="homeMainimg">
   </div>
 </template>
 
@@ -19,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+#homeMainimg {
+  background-image: url('../assets/abc.jpg');
+}
 </style>
