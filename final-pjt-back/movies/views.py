@@ -22,6 +22,13 @@ def movie_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+def movie_page_list(request, page):
+    movies = get_list_or_404(Movie)
+    if request.method == 'GET':
+        serializer = MovieListSerializer(movies[page:page+20], many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
 def movie_search(request, search_data):
     movies = get_list_or_404(Movie)
     if request.method == 'GET':
@@ -49,6 +56,13 @@ def actor_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+def actor_page_list(request, page):
+    actors = get_list_or_404(Actor)
+    if request.method == 'GET':
+        serializer = ActorListSerializer(actors[page:page+20], many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
 def actor_detail(request, actor_pk):
     actor = get_object_or_404(Actor, pk=actor_pk)
     if request.method == 'GET':
@@ -60,6 +74,13 @@ def director_list(request):
     directors = get_list_or_404(Director)
     if request.method == 'GET':
         serializer = DirectorListSerializer(directors, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET'])
+def director_page_list(request, page):
+    directors = get_list_or_404(Director)
+    if request.method == 'GET':
+        serializer = DirectorListSerializer(directors[page:page+20], many=True)
         return Response(serializer.data)
     
 @api_view(['GET'])

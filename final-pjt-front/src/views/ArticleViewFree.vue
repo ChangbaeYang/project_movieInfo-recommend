@@ -24,7 +24,7 @@ export default {
       // console.log(inputArticles)
       for (let article of inputArticles) {
         // console.log(article)
-        if (article.category === 1) {
+        if (article.category === 0) {
           articles.push(article)
         } 
       }

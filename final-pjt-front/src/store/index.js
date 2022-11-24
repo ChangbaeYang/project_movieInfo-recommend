@@ -42,10 +42,14 @@ export default new Vuex.Store({
     like_movies_info: [], // 좋아요 누른 영화의 모든 정보가 담겨 있음
     article: null, // 선택한 하나의 게시글 정보를 담고 있다.
     comments: null, // 선택한 하나의 게시글의 댓글정보
+    notHome: true,
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
+    },
+    notHome(state) {
+      return state.notHome ? true : false
     },
     recomMovie(state) {
       return state.recomMovie
@@ -68,6 +72,12 @@ export default new Vuex.Store({
   },
   /////////////// 게시글 정보, 선택한 게시글정보, 댓글정보 //////////////
   mutations: {
+    OPEN_HOME(state) {
+      state.notHome = false
+    },
+    CLOSE_HOME(state) {
+      state.notHome = true
+    },
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
@@ -127,7 +137,7 @@ export default new Vuex.Store({
     // 회원가입 & 로그인
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({ name: 'movies' })
+      router.push({ name: 'HomeView' })
     },
     // 로그아웃
     LOGOUT_USER(state) {
@@ -242,7 +252,8 @@ export default new Vuex.Store({
     },
     SEARCH_RESULT(state, search_result) {
       state.search_result = search_result
-      router.push({ name : 'searchResult'})
+      location.href = "/searchResult"
+      // router.push('/searching')
     }
   },
   actions: {
@@ -406,6 +417,18 @@ export default new Vuex.Store({
       .then((res) => {
         // console.log(res.data.key)
         context.commit('SAVE_TOKEN', res.data.key)
+      })
+      .then(() => {
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+            Authorization: `Token ${context.state.token}`
+          },
+        })
+        .then((res) => {
+          context.commit('GET_USER_INFO', res.data)
+        })
       })
     },
     logIn(context, payload) {
@@ -601,21 +624,8 @@ export default new Vuex.Store({
         }
       }
       this.commit('SEARCH_RESULT', search_result)
-      // 이건 영화 제목으로 검색하는 것 - 실패 대비용 백업
-      // axios({
-      //   method: 'get',
-      //   url: `${API_URL}/api/v1/movies/search/${searchData}/`,
-      //   data: {
-      //     search_data: searchData,
-      //   },
-      // })
-      // .then((res) => {
-      //   router.push({ name: 'searchResult'})
-      //   // console.log(res.data) // 배열로 나온다.
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
+      
+      // 게시글
     },
     recommendRandomMovie(context) {
       // 좋아요한 영화를 제외한 영화중에서 하나를 추천하자.

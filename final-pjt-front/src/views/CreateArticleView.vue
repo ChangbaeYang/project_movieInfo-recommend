@@ -8,9 +8,9 @@
       <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br>
       <label for="category">게시판 : </label>
       <select id="category" v-model="category">
-        <option value=1>자유게시판</option>
-        <option value=2>토론게시판</option>
-        <option value=3>건의게시판</option>
+        <option value=0>자유게시판</option>
+        <option value=1>토론게시판</option>
+        <option value=2>건의게시판</option>
       </select>
       <input type="submit" id="submit">
     </form>

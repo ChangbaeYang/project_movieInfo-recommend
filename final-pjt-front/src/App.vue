@@ -1,54 +1,34 @@
 <template>
-  <div id="app">
-    <router-link :to="{ name: 'movies' }">BrandName</router-link>
-     
-
-   
-     
-        <router-link :to="{ name: 'movies' }" style="font-weight:bold;"> Movie </router-link> 
-       
-     
-         <router-link :to="{ name: 'actors' }" style="font-weight:bold;"> Actor </router-link> 
-     
-        
-          <router-link :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link> 
-     
-            <router-link :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
-        
-         
-      
-          
-            <router-link :to="{ name: 'searchResult' }"></router-link>
-            <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link>
-         
-           
-          <button v-if="isLogin" @click="logOut">Log-out</button>
-         
-        
-          <form @submit.prevent="searchUp">
-            <input v-model="searchData" placeholder="Movie_Search">
-          </form>
-
-            <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>
-            <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
-
-    <router-view/>
-    <footer></footer>
+  <div id="app" class="container text-center">
+    <HomeView 
+      v-if="isHome"/>
+    <div v-if="!isHome">
+      <router-link :to="{ name: 'HomeView' }">BrandName</router-link>
+      <router-link :to="{ name: 'movies' }" style="font-weight:bold;"> Movie </router-link> 
+      <router-link :to="{ name: 'actors' }" style="font-weight:bold;"> Actor </router-link> 
+      <router-link :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link> 
+      <router-link :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
+      <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link>      
+      <button v-if="isLogin" @click="logOut">Log-out</button>  
+      <form @submit.prevent="searchUp">
+        <input v-model="searchData" placeholder="Search">
+      </form>
+      <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>
+      <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
+      <router-view/>
+      <footer></footer>
+    </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data () {
     return {
       searchData: null,
+      isHome: false
     }
-  },
-  created() {
-    this.$store.dispatch('getMovies')
-    this.$store.dispatch('getGenres')
-    this.$store.dispatch('getActors')
-    this.$store.dispatch('getDirectors')
   },
   computed: {
     isLogin() {
@@ -60,16 +40,15 @@ export default {
     },
     username() {
       return this.$store.state.user_info.username
-    }
+    },
   },
   methods: {
     logOut() {
-      this.$router.push('movies')
+      this.$router.push({ name:'HomeView' })
       this.$store.commit('LOGOUT_USER')
       this.$store.dispatch('logOut')
     },
     searchUp() {
-      // console.log(this.searchData)
       this.$store.dispatch('searchUp', this.searchData)
     },
   }
@@ -84,10 +63,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#main-bar {
-  background-color: rgb(218, 220, 224);
 }
 
 a {
