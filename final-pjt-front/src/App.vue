@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
       <div class="container-fluid">
-        <router-link class="navbar-brand" :to="{ name: 'HomeView' }" style="font-weight:bold;">DC Company</router-link>
+        <router-link class="navbar-brand" :to="{ name: 'HomeView' }" style="font-weight:bold;">Picky Movie</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,6 +48,9 @@
     <HomeView 
       v-if="isHome"
     />
+    <footer id="footer" class="fixed-bottom">
+  
+    </footer>
   </div>
 </template>
 

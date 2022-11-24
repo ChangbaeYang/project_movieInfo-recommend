@@ -1,5 +1,16 @@
 <template>
-  <div id="homeMainimg">
+  <div id="homeMainimg" class="flex">
+    <div class="leftMain">
+      <div>
+        <!-- <p>Picky Movie</p>
+      <p>Pick your movie with</p>
+      <p>Infinite Scroll, you can get</p>
+      <p>Creative Thinking, you can share</p>
+      <p>Kill this time with us, We are for</p>
+      <p>Y.O.U</p> -->
+      </div>
+    </div>
+    <div class="rightMain"></div>
   </div>
 </template>
 
@@ -16,6 +27,23 @@ export default {
 
 <style>
 #homeMainimg {
-  background-image: url('../assets/abc.jpg');
+  width: 100%;
 }
-</style>
+.leftMain {
+  width: 50%;
+  height: 1020px;
+  background: black;
+  color: white;
+  display: inline-block;
+}
+.rightMain {
+  width: 50%;
+  height: 1020px;
+  background:url('../assets/thress.jpeg');
+  background-size: cover;
+  /* max-height: 100%; */
+  max-width: 100%;
+  display: inline-block;
+
+}
+</style>``
