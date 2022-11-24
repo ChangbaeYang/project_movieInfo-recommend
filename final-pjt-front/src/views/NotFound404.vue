@@ -1,5 +1,5 @@
 <template>
-    <div class="page-404">
+    <div class="page-404" style="margin-top:65px;">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <div>
             <video src="../assets/videoplayback.mp4" controls autoplay="true" muted></video>
@@ -8,8 +8,7 @@
             <div class="middle">
                 <div class="inner">
                     <!--BEGIN CONTENT-->
-                    <span class="inner-status">Opps! Internal Server Error!</span>
-                    <span class="inner-detail">Unfortunately we're having trouble loading the page you are looking for. Please come back in a while.</span>
+                    <span style="font-size:40px;" class="inner-status">Opps! There is no page!!</span>
                     <!--END CONTENT-->
                 </div>
             </div>

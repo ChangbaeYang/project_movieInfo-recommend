@@ -1,13 +1,14 @@
 <template>
-  <div class="card" style="width:18rem">
-    <h5 class="card-header">작성자: {{ article.username }}</h5>
-    <div class="card-body">
-      <h5 class="card-title">{{ article.title }}</h5>
-      <router-link class="btn btn-primary" :to="{ name: 'articleDetail', params: { id: article.id } }">
-        DETAIL
-      </router-link>
-    </div>
-  </div>
+  <tbody>
+    <tr>
+      <th scope="row">{{ article.id }}</th>
+      <td>{{ article.username }}</td>
+      <td colspan="3">
+        <router-link :to="{ name: 'articleDetail', params: { id: article.id } }">{{ article.title }}</router-link>
+      </td>
+      <td>{{ article.created_at}}</td>
+    </tr>
+  </tbody>
 </template>
 
 <script>

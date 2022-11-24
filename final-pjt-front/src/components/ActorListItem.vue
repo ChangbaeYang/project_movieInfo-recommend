@@ -59,7 +59,7 @@ export default {
       let repMovieTitle = ''
       for (let movie of movies) {
         if (movie.id === movieIdx) {
-          console.log('hi')
+          // console.log('hi')
           repMovieTitle = movie.title
         }
       }

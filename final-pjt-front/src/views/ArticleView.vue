@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <h1>Article Page</h1>
-    <router-link :to="{ name: 'createArticle' }">[글쓰기]</router-link>
+  <div style="margin-top:65px;">
+    <h1>Share Thinking</h1>
+    <router-link style="text-decoration:none; color: lightslategray;" :to="{ name: 'createArticle' }">[CREATE]</router-link>
     <hr>
     <nav>
-      <router-link :to="{ name : 'articleList' }">전체 게시판</router-link> |
-      <router-link :to="{ name : 'articleFree' }">자유 게시판</router-link> | 
-      <router-link :to="{ name : 'articleDebate' }">토론 게시판</router-link> | 
-      <router-link :to="{ name : 'articleHelp' }">건의 게시판</router-link>
+      <router-link class="hooo" :to="{ name : 'articleList' }" style="text-decoration:none; color: lightslategray; margin-right:5px; margin-right:5px;">ALL</router-link> |
+      <router-link class="hooo" :to="{ name : 'articleFree' }" style="text-decoration:none; color: lightslategray; margin-left:5px; margin-right:5px;">FREE</router-link> | 
+      <router-link class="hooo" :to="{ name : 'articleDebate' }" style="text-decoration:none; color: lightslategray; margin-left:5px; margin-right:5px;">DEBATE</router-link> | 
+      <router-link class="hooo" :to="{ name : 'articleHelp' }" style="text-decoration:none; color: lightslategray; margin-left:5px; margin-right:5px;">HELP</router-link>
     </nav>
     <router-view/>
   </div>
@@ -44,5 +44,7 @@ export default {
 </script>
 
 <style>
-
+.hooo:hover {
+  color: black;
+}
 </style>

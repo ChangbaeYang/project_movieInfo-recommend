@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>영화에 🧡를 누르시는만큼 더 정확한 추천을 받을 수 있습니다!</p>
+    <h3>Recommendation!</h3>
+    <p style="margin-top:0px; color:lightgray;">Please, click ❤️ on movies. You will get more specific Recommendation!</p>
     <div class="container">
       <section class="row">
         <MyRecommendationItem

@@ -416,6 +416,7 @@ export default new Vuex.Store({
       })
       .then((res) => {
         // console.log(res.data.key)
+        alert('Welcome to join us!')
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .then(() => {

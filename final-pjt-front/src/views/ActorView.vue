@@ -11,6 +11,9 @@ export default {
   name: 'ActorView',
   components: {
     ActorList,
+  },
+  created() {
+    this.$store.dispatch('getMovies')
   }
 }
 </script>

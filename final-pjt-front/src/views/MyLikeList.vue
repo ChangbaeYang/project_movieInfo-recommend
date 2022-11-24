@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>My Lovely Movie</h2>
+    <h3>My Likes</h3>
     <div class="container">
       <section class="row">
         <MyLikeListItem

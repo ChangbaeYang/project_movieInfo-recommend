@@ -11,7 +11,7 @@
           <img src="../assets/gang.jpeg" class="d-block w-100">
           <div class="carousel-caption d-none d-md-block">
             <h3>PEAKY BLINDERS</h3>
-            <p>Got the world with one peakey in the hat.</p>
+            <p>Get the world with one peakey in the hat.</p>
           </div>
         </div>
         <div class="carousel-item">
