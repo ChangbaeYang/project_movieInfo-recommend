@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 id="title">Directors</h1>
-    <DirectorList/>
+    <DirectorList style="padding-top:65px;"/>
   </div>
 </template>
 
@@ -17,7 +16,4 @@ export default {
 </script>
 
 <style>
-#title {
-  color: rgb(148, 154, 158)
-}
 </style>

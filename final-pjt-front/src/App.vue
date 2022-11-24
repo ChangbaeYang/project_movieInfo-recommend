@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg bg-light fixed-top">
       <div class="container-fluid">
-        <router-link class="navbar-brand" :to="{ name: 'HomeView' }" style="font-weight:bold;">Picky Movie</router-link>
+        <router-link class="navbar-brand" :to="{ name: 'HomeView' }" style="font-weight:bold; margin-left:2px;">Picky Movie</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,27 +17,20 @@
             <li class="nav-item">
               <router-link class="nav-link active" :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link>
             </li>
-            <li class="nav-item dropdown">
-              <router-link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" :to="{ name: 'articles' }" style="font-weight:bold;"> 
-                Article 
-              </router-link>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
+            <li class="nav-item">
+              <router-link class="nav-link active" :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
             </li>
+            
           </ul>
           <form class="d-flex" @submit.prevent="searchUp">
             <input class="form-control me-2" type="search" placeholder="Search & Enter" aria-label="Search" v-model="searchData">
-            <button v-if="!isLogin" class="btn btn-outline-success">
-              <router-link :to="{ name: 'login' }"> Login </router-link>
+            <button v-if="!isLogin" class="btn btn-outline-dark">
+              <router-link id="login-text" :to="{ name: 'login' }"> Login </router-link>
             </button>
-            <button v-if="isLogin" class="btn btn-outline-success">
-              <router-link v-if="isLogin" :to="{ name: 'profile' }"> MyPage </router-link>
+            <button v-if="isLogin" class="btn btn-light">
+              <router-link id="my-page" v-if="isLogin" :to="{ name: 'profile' }"> MyPage </router-link>
             </button>
-            <button v-if="isLogin" @click="logOut" class="btn btn-outline-danger" style="margin-left: 5px;">
+            <button v-if="isLogin" @click="logOut" class="btn btn-light">
               LogOut
             </button>
           </form>
@@ -98,6 +91,13 @@ export default {
   /* color: #2c3e50; */
 }
 
+#login-text:hover {
+  color: white;
+}
+
+#my-page:hover {
+  color: black;
+}
 footer {
     background-color: #222;
     color: #fff;
@@ -129,5 +129,13 @@ footer a {
 <style scoped>
 a {
   text-decoration: none;
+  color: black;
+}
+#login-btn {
+  color: black;
+}
+#login-btn :hover {
+  color: white;
+  background: black;
 }
 </style>
