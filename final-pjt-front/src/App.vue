@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container text-center">
+  <div id="app">
     <HomeView 
       v-if="isHome"/>
     <div v-if="!isHome">

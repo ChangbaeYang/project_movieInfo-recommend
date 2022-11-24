@@ -10,7 +10,6 @@ import ArticleList from '@/views/ArticleList'
 import SearchResultView from '@/views/SearchResultView'
 import NotFound404 from '@/views/NotFound404'
 import HomeView from '@/views/HomeView'
-import GetInView from '@/views/GetInView'
 
 Vue.use(VueRouter)
 
@@ -19,11 +18,6 @@ const routes = [
     path: '/',
     name: 'HomeView',
     component: HomeView
-  },
-  {
-    path: '/LogIn&SignUp',
-    name: 'GetInView',
-    component: GetInView,
   },
   {
     path: '/movies', // 메인페이지 바뀌면 바꾸기
