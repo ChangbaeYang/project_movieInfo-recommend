@@ -2,7 +2,7 @@
     <div class="page-404">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <div>
-            <video src="../assets/videoplayback.mp4" controls autoplay="true" muted></video>
+            <video class="video" src="../assets/videoplayback.mp4" controls autoplay="true" muted></video>
         </div>
         <div class="outer">
             <div class="middle">
@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+        <button>go back</button>
     </div>
 </template>
 

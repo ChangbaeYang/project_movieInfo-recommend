@@ -2,7 +2,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
-
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .serializers import MovieListSerializer, MovieSerializer
@@ -11,6 +10,7 @@ from .serializers import DirectorListSerializer, DirectorSerializer
 from .serializers import ReviewListSerializer, ReviewSerializer
 from .serializers import GenreListSerializer, GenreSerializer
 from .models import Movie, Actor, Director, Review, Genre
+from .serializers import UserSerialize
 # Create your views here.
 # df repr(????, reqe):
 #     pass
@@ -158,36 +158,31 @@ def director_like(request, director_pk):
     return Response(context)
 
 @api_view(['POST'])
-def movie_like(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    # print(movie)
-    if movie.like_users.filter(pk=request.user.pk).exists():
-        movie.like_users.remove(request.user.pk)
-        movie_liked = False
-    else:
-        movie.like_users.add(request.user.pk)
-        movie_liked = True
-    context={
-        'movie_id': movie_pk,
-        'movie_liked': movie_liked,
-        'movie_like_count': movie.like_users.count()
-    }
-    return Response(context)
+def users_info(request):
+    users = request.data.get('users')
+    movies = []
+    for user in users:
+        user = get_object_or_404(get_user_model(), pk=user)
+        serializer = UserSerializer(user)
+        like_movies = serializer.data.get('like_movies')
+        for movie in like_movies:
+            if movie not in movies:
+                movies.append(movie)
+    return Response(movies)
 
-# @api_view(['GET'])
-# def movie_recommend(request):
-#     # 추천 영화를 몇개를 보여줄까.
-#     # 좋아하는 영화 -> 장르, 평점, 최신작
-#     genre = get_list_or_404(Genre)
-#     movies = get_list_or_404(Movie)
-#     like_movies = movies.like_users.filter(pk=request.user.pk)
-#     # 좋아하는 감독 -> 좋아하는 감독의 다른 작품은 다 넣자.(무조건 넣자.)
-#     directors = get_list_or_404(Director)
-#     like_directors = directors.like_users.filter(pk=request.user.pk) # 요청한 유저의 좋아요 감독만 뽑는다.(아이디 값)
-#     like_directors_directing_movies = like_directors.directing_movies.all() # 좋아요된 감독들의 디렉팅한 작품들
-#     directing_serializer = MovieListSerializer()
-#     if like_movies.length() == 0 or like_directors.length() == 0:
-#         context = {
-#             'No answer': True,
-#         }
-#         return Response(context)
+(['POST'])
+def recommend(request):
+#높은 평점영화
+  high_vote_average_movies = Movie.objects.all().order_by('vote_average')[:20]
+  vote_serializer = MovieSerializer(high_vote_average_movies, many=True)
+
+  # 좋아요 기반
+  users_movies = []
+
+  like_movies = request.data.get('like_movies')
+  for like_movie in like_movies:
+    movie = get_object_or_404(Movie, pk=like_movie)
+    if not movie in users_movies:
+      users_movies.append(movie)
+  
+  return Response([vote_serializer.data])

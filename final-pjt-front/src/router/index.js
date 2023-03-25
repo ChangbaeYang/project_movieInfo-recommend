@@ -7,9 +7,7 @@ import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleList from '@/views/ArticleList'
-import SearchResultView from '@/views/SearchResultView'
-import NotFound404 from '@/views/NotFound404'
-import HomeView from '@/views/HomeView'
+import PageNotFound from '@/views/PageNotFound'
 
 Vue.use(VueRouter)
 
@@ -130,8 +128,8 @@ const routes = [
   },
   {
     path: '/404',
-    component: NotFound404
-  },
+    component: PageNotFound
+  }
 ]
 
 const router = new VueRouter({
