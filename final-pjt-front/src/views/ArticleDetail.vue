@@ -1,29 +1,43 @@
 <template>
-  <div>
-    <h1>Detail</h1>
-    <p>글 번호 : {{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
-    <p>내용 : {{ article.content }}</p>
-    <p>작성자 : {{ article.username }}</p>
-    <p>작성시간 : {{ article.created_at }}</p>
-    <p>수정시간 : {{ article.updated_at }}</p>
-    <p>좋아하는 사람 : {{ article.like_users }} -> 몇명좋아하는지로 바꾸자</p>
-    <button @click="goBack">뒤로가기</button>
-    <!-- <router-link :to="{ name: 'updateArticle', params: { id: article.id } }"> -->
-      <button @click="updateArticle" >수정</button>
-    <!-- </router-link> -->
-    <button @click="deleteArticle">삭제</button>
-    <hr>
-    <p>Comments</p>
+  <div style="margin-top: 65px; padding-left:500px; padding-right:500px;">
+    <button class="btn btn-light" @click="goBack" style="float:left; margin-bottom: 2px; font-weight:bold;"> &lt; </button>
+    <h5 style="margin-bottom:2px;">Read {{ article.username }}'s idea</h5>
+    <form @submit.prevent="Nothing">
+      <!-- 제목 -->
+      <div class="mb-3" style="margin-top:2px;">
+        <input class="form-control" id="title" :value="article.title" disabled readonly>
+      </div>
+      <!-- 내용 -->
+      <div class="mb-3">
+        <textarea :value="article.content" class="form-control" id="content" rows="20" disabled readonly></textarea>
+      </div>
+    </form>
+    <div style="width:100%">
+      <div style="float:right; width:50%;">
+        <p style="font-size: 12px; margin-bottom:0px;">created at: {{ article.created_at }}</p>
+        <p style="font-size: 12px; margin-bottom:0px;">updated at: {{ article.updated_at }}</p>
+      </div>
+      <div style="float:left; width:50%; margin-bottom: 10px;">
+        <button type="submit" class="btn btn-outline-dark" style="float:left; margin-right:5px;">
+          Like!
+        </button>
+        <!-- 수정, 삭제 -->
+        <button @click="updateArticle" class="btn btn-outline-dark" style="float:left; margin-right:5px;">Edit</button>
+        <button @click="deleteArticle" class="btn btn-outline-dark" style="float:left">Delete</button>
+      </div>
+    </div>
+    <!-- 댓글 -->
     <CommentsListItem
       v-for="comment in comments.slice().reverse()"
       :key="comment.id"
       :comment="comment"
       @delete-comment="deleteComment"
     /> 
-    <form @submit.prevent="createComment">
-      <input type="textarea" v-model.trim="comment">
-      <input type="submit" id="submit">
+    <form @submit.prevent="createComment" style="margin-bottom:10px;">
+      <div class="mb-3">
+        <input type="from-control" v-model.trim="comment">
+        <input type="submit" id="submit" value="Push!">
+      </div>
     </form>
   </div>
 </template>
@@ -60,6 +74,9 @@ export default {
     this.getComments()
   },
   methods: {
+    nothing() {
+      return
+    },
     getArticleDetail() {
       this.$store.dispatch('getArticleDetail', this.$route.params.id)
     },

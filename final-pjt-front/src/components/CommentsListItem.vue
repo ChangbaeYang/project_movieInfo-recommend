@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <p>내용 : {{ comment.content }}</p>
-    <p>작성시간 : {{ comment.created_at }}</p>
-    <p>수정시간 : {{ comment.updated_at }}</p>
-    <p>작성자 : {{ username }}</p>
+  <div class="mb-3" style="margin-top:2px;">
+    <input class="form-control" id="title" :value="comment.content" disabled readonly>
+    <p style="font-size:10px; margin-bottom: 0px;">username : {{ username }}</p>
+    <p style="font-size:5px; margin-bottom: 0px;">created at : {{ comment.created_at }}</p>
+    <p style="font-size:10px; margin-bottom: 0px;">updated at : {{ comment.updated_at }}</p>
     <div>
-      <button @click="deleteComment">삭제</button>
+      <button class="btn btn-outline-dark btn-sm" @click="deleteComment">삭제</button>
     </div>
     <hr>
   </div>

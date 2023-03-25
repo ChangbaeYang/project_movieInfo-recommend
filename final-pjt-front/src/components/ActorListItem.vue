@@ -17,12 +17,10 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title" style="font-size:40px; margin-bottom:20px;">{{ actor.name }}</h5>
-                <p class="card-text">birth : </p>
+                <p class="card-text">birth : {{ actor.birthday }}</p>
                 <p class="card-text">popularity : {{ actor.popularity }}</p>
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
-                <p class="card-text"><small class="text-muted">'' like this actor </small></p>
-                <button>좋아요</button>
               </div>
             </div>
           </div>
@@ -61,6 +59,7 @@ export default {
       let repMovieTitle = ''
       for (let movie of movies) {
         if (movie.id === movieIdx) {
+          // console.log('hi')
           repMovieTitle = movie.title
         }
       }

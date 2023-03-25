@@ -17,7 +17,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title" style="font-size:40px; margin-bottom:20px;">{{ director.name }}</h5>
-                <p class="card-text">birth : </p>
+                <p class="card-text">birth : {{ director.birthday }}</p>
                 <p class="card-text">popularity : {{ director.popularity }}</p>
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>

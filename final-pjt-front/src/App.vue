@@ -1,23 +1,11 @@
 <template>
   <div id="app">
     <HomeView 
-      v-if="isHome"/>
-    <div v-if="!isHome">
-      <router-link :to="{ name: 'HomeView' }">BrandName</router-link>
-      <router-link :to="{ name: 'movies' }" style="font-weight:bold;"> Movie </router-link> 
-      <router-link :to="{ name: 'actors' }" style="font-weight:bold;"> Actor </router-link> 
-      <router-link :to="{ name: 'directors' }" style="font-weight:bold;"> Director </router-link> 
-      <router-link :to="{ name: 'articles' }" style="font-weight:bold;"> Article </router-link>
-      <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link>      
-      <button v-if="isLogin" @click="logOut">Log-out</button>  
-      <form @submit.prevent="searchUp">
-        <input v-model="searchData" placeholder="Search">
-      </form>
-      <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>
-      <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
-      <router-view/>
-      <footer></footer>
-    </div>
+      v-if="isHome"
+    />
+    <footer id="footer" class="fixed-bottom">
+  
+    </footer>
   </div>
 </template>
 
@@ -27,7 +15,7 @@ export default {
   data () {
     return {
       searchData: null,
-      isHome: false
+      isHome: false,
     }
   },
   computed: {
@@ -58,23 +46,58 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
 }
 
+#login-text:hover {
+  color: white;
+}
+
+#my-page:hover {
+  color: black;
+}
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+
+</style>
+
+<style scoped>
 a {
   text-decoration: none;
+  color: black;
 }
-
-/* nav {
-  padding: 30px;
-} */
-
-
-/* nav a.router-link-exact-active {
-  color: #42b983;
-} */
+#login-btn {
+  color: black;
+}
+#login-btn :hover {
+  color: white;
+  background: black;
+}
 </style>

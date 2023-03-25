@@ -28,6 +28,9 @@ export default {
       movie_page: [],
     }
   },
+  created() {
+    this.$store.dispatch('getGenres')
+  },
   methods: {
     infiniteHandler($state) {
       this.page += 10

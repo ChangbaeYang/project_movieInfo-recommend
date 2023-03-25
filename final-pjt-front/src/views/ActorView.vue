@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 id="title">Actors</h1>
-    <ActorList/>
+    <ActorList style="padding-top:65px;"/>
   </div>
 </template>
 
@@ -12,12 +11,12 @@ export default {
   name: 'ActorView',
   components: {
     ActorList,
+  },
+  created() {
+    this.$store.dispatch('getMovies')
   }
 }
 </script>
 
 <style>
-#title {
-  color: rgb(148, 154, 158)
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>영화 검색 결과</h3>
+  <div style="margin-top:60px;">
+    <h3>Movie Result</h3>
       <div class="container">
         <section class="row">
           <SearchResultMovie
@@ -11,7 +11,7 @@
         </section>
       </div>
     <hr>
-    <h3>배우 검색 결과</h3>
+    <h3 style="margin-bottom:20px;">Actor Result</h3>
       <div class="container">
         <section class="row">
           <SearchResultActor
@@ -22,7 +22,7 @@
         </section>
       </div>
     <hr>
-    <h3>감독 검색 결과</h3>
+    <h3 style="margin-bottom:20px;">Director Result</h3>
       <div class="container">
         <section class="row">
           <SearchResultDirector
