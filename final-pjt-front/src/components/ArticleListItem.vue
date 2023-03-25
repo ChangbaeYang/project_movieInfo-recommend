@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <h5>{{ article.id }}</h5>
-    <p>작성자 : {{ article.username }}</p>
-    <p>{{ article.title }}</p>
-    <p>{{ article.category }}</p>
-    <p>{{ categoryType }}</p>
-    <router-link :to="{ name: 'articleDetail', params: { id: article.id } }">
-      [DETAIL]
-    </router-link>
-    <hr>
-  </div>
+  <tbody>
+    <tr>
+      <th scope="row">{{ article.id }}</th>
+      <td>{{ article.username }}</td>
+      <td colspan="3">
+        <router-link :to="{ name: 'articleDetail', params: { id: article.id } }">{{ article.title }}</router-link>
+      </td>
+      <td>{{ article.created_at}}</td>
+    </tr>
+  </tbody>
 </template>
 
 <script>

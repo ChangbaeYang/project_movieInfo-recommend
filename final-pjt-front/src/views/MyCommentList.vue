@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h3>MyCommentList</h3>
-    <MyCommentListItem/>
+    <h3>My Comments</h3>
+    <MyCommentListItem
+      v-for="myComment in myComments"
+      :key="myComment.id"
+      :myComment="myComment"
+    />
   </div>
 </template>
 
@@ -12,6 +16,14 @@ export default {
   name: "MyCommentList",
   components: {
     MyCommentListItem,
+  },
+  computed: {
+    myComments() {
+      return this.$store.state.my_comments
+    }
+  },
+  created() {
+    this.$store.dispatch('getMyComment')
   }
 }
 </script>

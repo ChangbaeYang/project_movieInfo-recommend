@@ -20,9 +20,6 @@
                 <p style="margin-bottom: 5px; margin-top: 5px;">runtime: {{ movie.runtime }}min</p>
                 <p style="margin-bottom: 5px;">vote average: {{ movie.vote_average }}</p>
                 <p style="margin-bottom: 5px;">release date: {{ movie.release_date }}</p>
-                <!-- <p style="margin-bottom: 5px;">language: {{ movie.original_language }}</p> -->
-                <!-- <p style="margin-bottom: 5px;">popularity: {{ movie.popularity }}</p> -->
-                homepageURL:
                 <a :href="movie.homepage">
                   <div v-if="movie.homepage">
                     <p class="card-text">{{ movie.homepage }}</p>
@@ -32,8 +29,9 @@
                   <p style="margin-bottom:5px;">-no homepage-</p>
                 </div>
               </div>
-              <p style="margin-bottom: 5px; margin-top: 0px;">'' like this movie</p>
-              <button>좋아요</button>
+              <p style="margin-bottom: 5px; margin-top: 0px;">{{ movieLikeCount }} like this movie</p>
+              <p :class="{ 'display-none': Liked }" @click="likeMovie">❤</p>
+              <p :class="{ 'display-none': !Liked }" @click="likeMovie">💖</p>
             </div>
           </div>
         </div>
@@ -41,14 +39,13 @@
           <p>Overview</p>
           <p>{{ movie.overview }}</p>
         </div>
-        <textarea name="hi" id="" cols="30" rows="10"></textarea>
       </div>
     </DetailModal>
   </article>
 </template>
 
 <script>
-import DetailModal from '@/components/DetailModal';
+import DetailModal from '@/components/DetailModal'
 import noImg from '../assets/no_image.png'
 
 export default {
@@ -67,9 +64,6 @@ export default {
   props: {
     movie: Object,
   },
-  created () {
-    this.$store.dispatch('getGenres')
-  },
   computed: {
     genresName() {
       let genresName = []
@@ -82,12 +76,39 @@ export default {
           }
       }
       return genresName
+    },
+    isLogin() {
+      if (this.$store.state.token) {
+        return true
+      } else {
+        return false
+      }
+    },
+    Liked() {
+      if (!this.isLogin) {
+        return false
+      } else {
+        if (this.$store.getters.movie_liked) {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
+    movieLikeCount() {
+      if (this.isLogin) {
+        // console.log(this.$store.getters.movie_like_count)
+        return this.$store.getters.movie_like_count
+      } else {
+        return this.$store.state.movie.like_users.length
+      }
     }
   },
   methods: {
     showMovieModal() {
       this.movieModal = !this.movieModal
       document.body.style.overflow = 'hidden'
+      this.$store.dispatch('selectMovie', this.movie) // 선택한 감독의 정보를 vuex에 넘긴다.
     },
     replaceImg(e) {
       e.preventDefault
@@ -97,10 +118,20 @@ export default {
       this.movieModal = false
       document.body.style.overflow = 'unset'
     },
+    likeMovie() {
+      if (this.$store.state.token) {
+        this.$store.dispatch('likeMovie', this.movie.id)
+      } else {
+        this.$router.push({ name: 'login'})
+        alert('로그인이 필요한 기능입니다.🤣')
+      }
+    },
   },
 }
 </script>
 
 <style>
-
+.display-none {
+  display: none;
+}
 </style>

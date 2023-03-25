@@ -1,0 +1,646 @@
+<div id="wrap" class="state">
+        <div id="background-opacity"></div>
+        <div id="left_layout" class="priority" style="display: block;">   
+      <div class="menu_right">
+        <ul id="menu_list_top"><li class="store_btn cate-big"><a href="#;" style="width: 45px;padding-top:15px;height:30px;text-align:left;">
+          <span class="store-menu trans-select-background"></span></a></li>
+        </ul>
+          <ul class="header_logo fade-logo" style="opacity: 1; visibility: visible;"><li><a href="/">
+            <span>DCCOMANY</span></a></li>
+           </ul><ul id="right_menu"><li><a href="#none" id="btn_search_layer"><span>Search</span></a></li>
+              <li><a href="/board/product/list.html?board_no=7"><span>Notice</span></a></li>
+              <li><a href="/board/product/list.html?board_no=6"><span>Board</span></a></li>
+              <li><a href="/myshop/index.html"><span>Account</span></a></li>
+              <li class="mobile"><a href="/order/basket.html"><span>Bag<span class="xans-element- xans-layout xans-layout-orderbasketcount ">(0)
+</span>
+</span></a></li>
+             <li class="xans-element- xans-layout xans-layout-multishoplist mobile dropdown "><a href="#currency" class="xans-element- xans-layout xans-layout-multishoplistitem currency_list"><span class="selected select xans-record-">
+                            <img src="/web/upload/icon_201901241804301800.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 3px 0 0;">kr/KRW                        </span>
+<span class=" select xans-record-">
+                            <img src="/web/upload/icon_201901241804363000.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 5px 0 0;">INTL/USD                        </span></a>
+<ul class="xans-element- xans-layout xans-layout-multishoplistitem dropdown-content"><li class="small uppercase selected xans-record-">
+                        <a href="http://vivastudio.co.kr/?redirect=T/">
+                            <img src="/web/upload/icon_201901241804301800.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 3px 0 0;">kr/KRW                        </a>
+                    </li>
+<li class="small uppercase  xans-record-">
+                        <a href="http://intl.vivastudio.co.kr/">
+                            <img src="/web/upload/icon_201901241804363000.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 5px 0 0;">INTL/USD                        </a>
+                    </li>
+</ul>
+</li>
+              
+              
+         </ul></div>
+    <div class="viva_search_layer">
+        <form id="searchBarForm" name="" action="/product/search.html" method="get" target="_self" enctype="multipart/form-data">
+<input id="banner_action" name="banner_action" value="" type="hidden"><div class="xans-element- xans-layout xans-layout-searchheader "><!--
+            $product_page=/product/detail.html
+            $category_page=/product/list.html
+            -->
+<fieldset>
+<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="Search" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text">
+                &nbsp;<input type="image" src="/web/upload/images/search_icon.png" alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">
+            &nbsp;</fieldset>
+<a href="#none" id="btn_close_search_layer"><img src="/web/upload/images/search_btn_x.png" alt="닫기"><span></span></a>
+</div>
+</form>    </div>
+</div>
+
+<div id="quick-menu">
+       <ul class="my" id="menu_list_top"><!--
+           <li class="cate-big cate right-cate-before"><a href="/product/list.html?cate_no=43">Shop</a></li>
+           <li class="cate-big cate right-cate-before"><a href="/product/lookbook.html?cate_no=66"><span>Lookbook</span></a></li>
+           <li class="cate-big cate right-cate-before"><a href="/product/journal.html?cate_no=67"><span>Editorial</span></a></li>
+           <li class="cate-big cate right-cate-before"><a href="/product/list.html?cate_no=43">New Arrivals</a></li>
+           <li class="cate-big cate right-cate-before"><a href="/board/urgency/urgency.html" class="trans-select"><span class="contact-view-btn">contact</span></a></li>
+           <li class="cate-big cate cart"><a href="/order/basket.html" class="trans-select"><span>cart <span module="Layout_orderBasketcount" class="count {$basket_count_display|display} {$basket_count_display_class}"><span class="{$basket_count_class}">{$basket_count}</span></span></span></a></li>
+			--></ul></div>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '303156440790666');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=303156440790666&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Facebook Pixel Code -->
+            
+<!--
+<div class="product-cate-left">
+    <ul>
+        <li class="product-cate-left-title"><a href="/product/list.html?cate_no=43" class="uppercase">women</a>
+            <ul>
+                <li><a href="/product/list.html?cate_no=44">tops</a></li>
+                <li><a href="/product/list.html?cate_no=48">dresses</a></li>
+                <li><a href="/product/list.html?cate_no=49">bottoms</a></li>
+                <li><a href="/product/list.html?cate_no=52">outers</a></li>
+                <li><a href="/product/list.html?cate_no=53">on sale</a></li>
+            </ul>
+        </li>
+        <li class="product-cate-left-title"><a href="/product/list.html?cate_no=54" class="uppercase">men</a>
+            <ul>
+                <li><a href="/product/list.html?cate_no=55">tops</a></li>
+                <li><a href="/product/list.html?cate_no=59">bottoms</a></li>
+                <li><a href="/product/list.html?cate_no=60">outers</a></li>
+                <li><a href="/product/list.html?cate_no=61">on sale</a></li>
+            </ul>
+        </li>
+        <li class="product-cate-left-title"><a href="/product/list.html?cate_no=62" class="uppercase">accessories</a>
+            <ul>
+                <li><a href="/product/list.html?cate_no=63">bags</a></li>
+                <li><a href="/product/list.html?cate_no=64">shoes</a></li>
+                <li><a href="/product/list.html?cate_no=65">jewelry</a></li>
+                <li><a href="/product/list.html?cate_no=66">etc.</a></li>
+            </ul>
+        </li>
+    </ul>
+            
+</div>
+-->
+        <div id="contents">
+
+<style>
+    #contents { width:100vw; padding: 45px 3vw; }
+</style>
+<!--
+<div module="Product_menupackage">
+
+    @css(/css/module/product/menupackage.css)
+    
+
+  <div class="path" module="product_headcategory">      
+        <ul class="right">
+            <li><a href="/">store</a></li>
+            <li class="{$disp_cate_1|display}"><a href="{$link_product_list_1}">&nbsp;&nbsp;-&nbsp;&nbsp;{$name_1}</a></li>
+            <li class="{$disp_cate_2|display}"><a href="{$link_product_list_2}">&nbsp;&nbsp;-&nbsp;&nbsp;{$name_2}</a></li>
+            <li class="{$disp_cate_3|display}"><a href="{$link_product_list_3}">&nbsp;&nbsp;-&nbsp;&nbsp;{$name_3}</a></li>
+            <li class="{$disp_cate_4|display}"><a href="{$link_product_list_4}">&nbsp;&nbsp;-&nbsp;&nbsp;{$name_4}</a></li>
+            <li module="product_normalmenu">({$total_count})</li>
+        </ul>
+    </div>
+    
+<div style="overflow:hidden;">    
+    <ul class="menuCategory">
+        참고 : 뉴상품관리 전용 모듈입니다. 뉴상품관리 이외의 곳에서 사용하면 정상동작하지 않습니다.
+        <li module="product_displaycategory" style="display:{$display};">
+            <a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="count {$product_count_display|display}">({$product_count})</span></a>
+            <ul module="product_children">
+                <li>
+                    <a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a>
+                    <div class="button">
+                        <ul module="product_children" class="subCategory">
+                            <li><a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a></li>
+                            <li><a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a>
+                    <div class="button">
+                        <ul module="product_children" class="subCategory">
+                            <li><a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a></li>
+                            <li><a href="/product/list.html?{$param_cate_no}">{$category_name} <span class="{$product_count_display|display}">({$product_count})</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            </li>
+    </ul>    
+    </div>
+</div>
+-->
+
+
+    <div id="product_grid_Area" class="xans-element- xans-product xans-product-listnormal"><!--
+        $count = 24
+        -->
+<ul id="grid2-2-4" class="prdList">
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=2216&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202008/96deeba2582637c841a82fbecb7d78a7.jpg" id="eListPrdImage2216_1" alt="CASHMERE LONG CHESTERFIELD COAT JA [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=2216&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202011/3fb3253e5c989a325ea88e8c79e7a18d.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">CASHMERE LONG CHESTERFIELD COAT JA [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 229,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 137,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+            <li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=3400&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202008/bd5912f2f5117b2b4119add1b5d8addb.jpg" id="eListPrdImage3400_1" alt="CASHMERE LONG CHESTERFIELD COAT JA [GREY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=3400&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202011/05107103cf0a7f9cf95699cf777c96b6.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">CASHMERE LONG CHESTERFIELD COAT JA [GREY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 229,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 137,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=3007&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202008/a30bc590e8141e32d621452f16862c52.jpg" id="eListPrdImage3007_1" alt="CASHMERE LONG CHESTERFIELD COAT JA [CAMEL]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=3007&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202011/2f8690409448e9468714617ef7477bb6.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">CASHMERE LONG CHESTERFIELD COAT JA [CAMEL]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 229,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 137,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4181&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202210/03ae91f340e4b4a817af0a2aefd07679.jpg" id="eListPrdImage4181_1" alt="[INSANE GARAGE] BIKER LEATHER JACKET [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4181&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202210/c15e2a1bf7d5438cfb18f7db50a5ab2b.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">[INSANE GARAGE] BIKER LEATHER JACKET [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 698,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 628,200</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4180&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202210/1bd4f52253e83825e6d4acce720df630.jpg" id="eListPrdImage4180_1" alt="[INSANE GARAGE] SKELETONE BIKER HEAVY RAGLAN HOODIE [CHARCOAL]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4180&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202210/fcc8ee1a032c637b619999dbd1c84b03.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">[INSANE GARAGE] SKELETONE BIKER HEAVY RAGLAN HOODIE [CHARCOAL]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 139,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 125,100</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4176&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/828f6684676b299b3e7f702ebf3ffb84.jpg" id="eListPrdImage4176_1" alt="LEATHER SHORT BIG PUFFER [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4176&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/45c9f0fe7a6ad7eb11d6a5834b60e30e.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">LEATHER SHORT BIG PUFFER [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 298,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 209,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4175&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/d7cced865e10c57667e40f59e0156db8.jpg" id="eListPrdImage4175_1" alt="SHORT BIG PUFFER [GREEN]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4175&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/1c4944c68b56ed734190b23eb1d342a1.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">SHORT BIG PUFFER [GREEN]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 258,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 181,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4174&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/00020d743e7ecc14077e33c3688f3ae5.jpg" id="eListPrdImage4174_1" alt="SHORT BIG PUFFER [NAVY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4174&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/0391792463721725f6e88d03f8796f3b.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">SHORT BIG PUFFER [NAVY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 258,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 181,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4173&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/f3f714d87f731b8458653529c84dd1b9.jpg" id="eListPrdImage4173_1" alt="SHORT BIG PUFFER [BROWN]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4173&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/42309dce651b4a6615fffc0ec5c7665c.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">SHORT BIG PUFFER [BROWN]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 258,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 181,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4172&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/604e832fc8da871edb5abd0437ca2ada.jpg" id="eListPrdImage4172_1" alt="SOUTIEN COLLAR COAT [NAVY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4172&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/cf76d6b496aaafbcb71ec78a9b0fa7aa.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">SOUTIEN COLLAR COAT [NAVY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 298,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 209,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4171&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/9a5c2e4f2b86156a06249e3f91a22b3c.jpg" id="eListPrdImage4171_1" alt="SOUTIEN COLLAR COAT [GREY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4171&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/011a5f9a943942e1e0983cf176a5d33b.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">SOUTIEN COLLAR COAT [GREY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 298,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 209,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4170&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/7e51aa78d0445f20c9b3f54b4796f6af.jpg" id="eListPrdImage4170_1" alt="HOODED COAT (MINI BAG SET) [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4170&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/2dc86784c0694827c288891c5f6106de.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">HOODED COAT (MINI BAG SET) [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 328,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 230,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4169&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/f5e903bc0559357f13c0793911032f38.jpg" id="eListPrdImage4169_1" alt="HOODED COAT (MINI BAG SET) [GREY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4169&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/62bf9564efed68f597efeace4c5b285e.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">HOODED COAT (MINI BAG SET) [GREY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 328,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 230,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4164&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/157a897a022949dcb00b39daafebf21f.jpg" id="eListPrdImage4164_1" alt="[INSANE GARAGE] LONG SLEEVE T-SHIRT [WHITE]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4164&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/478732bacd310d2da43a7e973dfde779.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">[INSANE GARAGE] LONG SLEEVE T-SHIRT [WHITE]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 69,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 62,100</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4162&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/a5c9700781529b38a74ea1212698dff3.jpg" id="eListPrdImage4162_1" alt="HEAVYWEIGHT VEGAN LEATHER MA-1 JACKET" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4162&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/e0f297283142c71adc57e558e9ef58e7.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">HEAVYWEIGHT VEGAN LEATHER MA-1 JACKET</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 249,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 174,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4161&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/3ed83d9239ff5240ae6f0be740c013c7.jpg" id="eListPrdImage4161_1" alt="LIGHTWEIGHT VEGAN LEATHER MA-1 JACKET [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4161&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/d5de0848369170dfccf5021a2412a0aa.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">LIGHTWEIGHT VEGAN LEATHER MA-1 JACKET [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 219,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 153,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4160&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/9761ed680171ed070d51e4d81dddb935.jpg" id="eListPrdImage4160_1" alt="WESTERN LAMBSKIN COAT [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4160&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/1ac58ac593d1be6b7627fb8cf2811a08.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">WESTERN LAMBSKIN COAT [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 498,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 423,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4159&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/b2c80f205378057b009292611e2aa8a1.jpg" id="eListPrdImage4159_1" alt="WAPPEN WOOL VARSITY JACKET [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4159&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/64b9155c8c8bfbcabbf1de21211dfdf4.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">WAPPEN WOOL VARSITY JACKET [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 239,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 174,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4158&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/5b1f29d5f2e4c7c4c4b2d91bb0ff022f.jpg" id="eListPrdImage4158_1" alt="WAPPEN WOOL VARSITY JACKET [NAVY]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4158&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/ccc9689dba47a0b576a506eee23a7904.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">WAPPEN WOOL VARSITY JACKET [NAVY]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 239,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 174,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4157&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/43b0cc2dd5d3023a6a98f1c3145efaf2.jpg" id="eListPrdImage4157_1" alt="COLLAR BUTTON CARDIGAN [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4157&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/e64b491bf8fe195a292a7ed50d909872.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">COLLAR BUTTON CARDIGAN [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 129,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 97,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4156&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/3b18a42fc91d5e722fd9771c5d30e9d3.jpg" id="eListPrdImage4156_1" alt="COLLAR BUTTON CARDIGAN [PURPLE]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4156&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/5d0ec772bc92396b1d321c0fad499c1e.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">COLLAR BUTTON CARDIGAN [PURPLE]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 129,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 97,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4155&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/fb9dde7c5a7b1cbf5e8fcfebb2d704e8.jpg" id="eListPrdImage4155_1" alt="COLLAR BUTTON CARDIGAN [BEIGE]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4155&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/a610e6232c03d0c4cf10ee14dd4d4434.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">COLLAR BUTTON CARDIGAN [BEIGE]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 129,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 97,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4154&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/c2df050ce47d9972006da09cbfec13c4.jpg" id="eListPrdImage4154_1" alt="DIVISION LEATHER PANTS [BROWN]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4154&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/0e30e1000ac57435574541d09585a681.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">DIVISION LEATHER PANTS [BROWN]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 129,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 90,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+<li class="">
+                <div class="box">
+<a href="/product/detail.html?product_no=4153&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/medium/202209/60a98d1ea6d88991611ee876e50f97ab.jpg" id="eListPrdImage4153_1" alt="DIVISION LEATHER PANTS [BLACK]" class="thumb"></a>
+                <div class="over_bg"><a href="/product/detail.html?product_no=4153&amp;cate_no=27&amp;display_group=1"><img src="//vivastudio.co.kr/web/product/tiny/202209/0b1cc70298e3a6b79d51896609f31df6.jpg"></a></div>
+                </div>
+                <div class="over_info">
+                    <p class="name"><span style="font-size:13px;color:#000000;">DIVISION LEATHER PANTS [BLACK]</span></p>
+                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-" style="display: none;">
+<strong class="title displaynone"><span style="font-size:13px;color:#000000;">PRICE</span> :</strong> <span style="font-size:13px;color:#000000;text-decoration:line-through;">KRW 129,000</span><span id="span_product_tax_type_text" style="text-decoration:line-through;"> </span></li>
+<li class=" xans-record-">
+<strong class="title displaynone"><span style="font-size:15px;color:#000000;">할인판매가</span> :</strong> <span style="font-size:15px;color:#000000;">KRW 90,000</span></li>
+</ul>
+<p class="icon">     </p>
+                </div>
+            </li>
+       </ul>
+</div>
+
+
+
+    <div class="xans-element- xans-product xans-product-normalpaging new"><div class="left"><a href="#none"><img src="/web/upload/mundane/i_arrival_prev.png"></a></div>
+<div class="center">
+        <li class="xans-record-"><a href="?cate_no=27&amp;page=1" class="this">1</a></li>
+        <li class="xans-record-"><a href="?cate_no=27&amp;page=2" class="other">2</a></li>
+        <li class="xans-record-"><a href="?cate_no=27&amp;page=3" class="other">3</a></li>
+        <li class="xans-record-"><a href="?cate_no=27&amp;page=4" class="other">4</a></li>
+        <li class="xans-record-"><a href="?cate_no=27&amp;page=5" class="other">5</a></li>
+    </div>
+<div class="right"><a href="?cate_no=27&amp;page=2"><img src="/web/upload/mundane/i_arrival_next.png"></a></div>
+</div>
+   
+</div>
+        
+<div class="store_menu">
+    <div class="xans-element- xans-layout xans-layout-statelogoff store_login "><a href="/member/login.html"><span>Login</span></a>
+</div>
+    
+    <ul class="right-cate-after"><li class="big">
+            <ul><li class="btn-over-event"><a href="#;" class="menu-under">Store</a>
+                    <div class="list-over-event">                        
+    					<div class="store_btn_back"><a href="#;">←</a></div>
+                        <ul><li class="small"><a href="/product/list.html?cate_no=27">All</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=78">New Arrivals</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=34">Outers</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=73">Leathers</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=114">Sweatshirts</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=116">T-shirts</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=117">Shirts</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=115">Knitwear</a></li>                            
+                            <li class="small"><a href="/product/list.html?cate_no=36">Bottoms</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=37">Accessories</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=126">Footwear</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=38">Bags</a></li>
+                            <li class="small"><a href="/product/list.html?cate_no=65">Sale</a></li>
+                        </ul></div>
+                </li>
+            </ul></li>
+		<li class="big"><a href="/product/lookbook.html?cate_no=80">Lookbook</a></li>
+		<li class="big"><a href="/board/product/list.html?board_no=6">Q&amp;A</a></li>
+       	<li class="big"><a href="/myshop/index.html"><span>My Page</span></a></li>
+        <li class="big"><a href="/board/urgency/urgency.html">Contact Us</a></li>
+        <li class="big"><a href="/offlinestore.html">offline store</a></li>
+        <li class="big"><a href="/product/list.html?cate_no=48">Collaboration</a></li>
+        
+        <li class="global">
+            <div style="padding:0;font-weight: bold; font-size:14px;"><img src="/web/upload/icon_201901241804301800.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 3px 0 0;">KR/KRW</div>
+            <div style="padding:0;font-weight: 300; font-size:14px;"><a href="http://intl.vivastudio.co.kr"><img src="/web/upload/icon_201901241804363000.png" style="height:12px;width: auto; vertical-align: middle; margin: -2px 5px 0 0;">INTL/USD</a></div>
+        </li>
+        
+        <!--li class="big"><a href="/product/editorial.html?cate_no=82">Editorials</a></li>
+        <li class="big"><a href="/product/journal.html?cate_no=27">New Arrivals</a></li>
+        <li class="big"><a href="http://www.partsstore.kr/" target="_blank">Parts</a></li>
+        <li class="big"><a href="http://www.currentstore.co.kr/" target="_blank">Current</a></li>
+        <li class="big"><a href="http://www.pavement.co.kr/" target="_blank">Pavement</a></li--> 
+       
+        
+        <!--li class="big padding"><a href="/offlinestore.html">Offline Store</a></li>
+        <li class="big"><a href="/board/product/list.html?board_no=6"><span>Board</span></a></li>
+        <li class="big"><a href="/myshop/index.html"><span>Account</span></a></li>
+        <li class="big"><a href="/myshop/index.html"><span>Bag<span module="Layout_orderBasketcount">({$basket_count})</span></span></a></li-->
+        <!--
+		<li class="big myinfo"><a href="/board/urgency/urgency.html"><span class="contact-view-btn">Contact</span></a></li>
+       <li class="big myinfo" module="Layout_statelogoff"><a href="/member/login.html"><span>login</span></a></li>
+       <li class="big myinfo" module="Layout_statelogon"><a href="{$action_logout}"><span>logout</span></a></li>
+        
+        <li class="cs" module="Layout_footer"><br /><br />{$phone}<br />Opening hours<br />10:00 - 18:00<br />Monday-Friday</li>
+		-->
+        
+    </ul><div class="search_btn_box">
+        <a href="#;" class="search_btn search_fullpage small-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+    	<div class="list-over-event">                        
+    		<div class="store_btn_back"><a href="#;">←</a></div>
+            <form id="searchBarForm" name="" action="/product/search.html" method="get" target="_self" enctype="multipart/form-data">
+<input id="banner_action" name="banner_action" value="" type="hidden"><div class="xans-element- xans-layout xans-layout-searchside search_box "><fieldset>
+<legend>검색</legend>
+                        <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text"><input type="image" src="/web/upload/images/btn_search.gif" alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">
+                &nbsp;</fieldset>
+</div>
+</form>        </div>
+    </div>
+    <!--div class="store_btn"><a href="#;"><span class="store-menu"></span></a></div-->
+</div> 
+        <!--<div id="footer">
+    
+    <div module="Layout_footer" class="fade trans-select">
+        @css(/css/module/layout/footer.css)
+        <div class="copyright">
+            <span>&copy; 2019 vivastudio co.</span><br /><br />
+            <p class="address">{$mall_zipcode} {$mall_addr2}<br />{$mall_addr1}</p>
+        	<a href="mailto:{$cpo_email}">{$cpo_email}</a><br />
+            {$phone}<br /><br />
+            <div style="font-size: 11px;">
+                ceo : {$president_name}<br />
+                permit number : {$network_regno}<br />
+                business number : <a href="http://ftc.go.kr/bizCommPop.do?wrkr_no=&apv_perm_no=2016304016830200560" target="_blank">{$company_regno}</a>
+            </div>
+        </div>
+    </div>
+    
+</div>-->
+        <div id="fix_footer">
+    
+    <!-- <div module="Layout_footer" class="fade trans-select"> -->
+    <div class="xans-element- xans-layout xans-layout-footer footer_container "><div class="xans-element- xans-layout xans-layout-footer left "><p>13487 A802-2, Pangyo-ro 242, Bundang-gu, Seongnam-si, Gyeonggi-do Korea 8F, ceo : 이준권&nbsp;&nbsp;&nbsp;&nbsp;© 2022 vivastudio co.</p>
+<p>business number : <a href="http://ftc.go.kr/bizCommPop.do?wrkr_no=&amp;apv_perm_no=2016304016830200560" target="_blank">635-88-00478</a>, permit number : 2022-성남분당C-0826, <a href="mailto:cs@vivastudio.co.kr">cs center : cs@vivastudio.co.kr</a>, contact : md@vivastudio.co.kr, 1666-5964</p>
+</div>
+<div class="right">   
+             <a href="/shopinfo/guide.html">Info</a>
+             <a href="/member/agreement.html">Terms</a>
+             <a href="/member/privacy.html">Policies</a>
+             <a href="/myshop/order/list.html">Order Tracking</a>
+             <a href="https://www.instagram.com/vivastudio_official">Instagram</a>
+             <a href="https://www.facebook.com/vivastudio.official">Facebook</a>
+        </div>
+</div>
+    
+</div>
+    </div>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>ActorView</h1>
-    <ActorList/>
+    <ActorList style="padding-top:65px;"/>
   </div>
 </template>
 
@@ -12,10 +11,12 @@ export default {
   name: 'ActorView',
   components: {
     ActorList,
+  },
+  created() {
+    this.$store.dispatch('getMovies')
   }
 }
 </script>
 
 <style>
-
 </style>

@@ -14,8 +14,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'HomeView',
+    component: HomeView
+  },
+
+  {
+    path: '/movies', // 메인페이지 바뀌면 바꾸기
     name: 'movies',
     component: MovieView
+  },
+  {
+    path: '/searchResult',
+    name: 'searchResult',
+    component: SearchResultView
   },
   {
     path: '/articles',

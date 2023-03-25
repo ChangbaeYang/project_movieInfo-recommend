@@ -34,6 +34,8 @@ class Movie(models.Model):
 class Actor(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
+    birthday = models.CharField(max_length=100, null=True)
+    deathday = models.CharField(max_length=100, null=True)
     popularity = models.FloatField()
     known_for_department = models.CharField(max_length=100)
     profile_path = models.CharField(max_length=200)
@@ -47,6 +49,8 @@ class Actor(models.Model):
 class Director(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
+    birthday = models.CharField(max_length=100, null=True)
+    deathday = models.CharField(max_length=100, null=True)
     popularity = models.FloatField()
     known_for_department = models.CharField(max_length=100)
     profile_path = models.CharField(max_length=200)

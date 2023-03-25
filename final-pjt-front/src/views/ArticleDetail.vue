@@ -1,29 +1,43 @@
 <template>
-  <div>
-    <h1>Detail</h1>
-    <p>글 번호 : {{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
-    <p>내용 : {{ article.content }}</p>
-    <p>작성자 : {{ article.username }}</p>
-    <p>작성시간 : {{ article.created_at }}</p>
-    <p>수정시간 : {{ article.updated_at }}</p>
-    <p>좋아하는 사람 : {{ article.like_users }} -> 몇명좋아하는지로 바꾸자</p>
-    <button @click="goBack">뒤로가기</button>
-    <router-link :to="{ name: 'updateArticle', params: { id: article.id } }">
-      <button>수정</button>
-    </router-link>
-    <button @click="deleteArticle">삭제</button>
-    <hr>
-    <p>Comments</p>
+  <div style="margin-top: 65px; padding-left:500px; padding-right:500px;">
+    <button class="btn btn-light" @click="goBack" style="float:left; margin-bottom: 2px; font-weight:bold;"> &lt; </button>
+    <h5 style="margin-bottom:2px;">Read {{ article.username }}'s idea</h5>
+    <form @submit.prevent="Nothing">
+      <!-- 제목 -->
+      <div class="mb-3" style="margin-top:2px;">
+        <input class="form-control" id="title" :value="article.title" disabled readonly>
+      </div>
+      <!-- 내용 -->
+      <div class="mb-3">
+        <textarea :value="article.content" class="form-control" id="content" rows="20" disabled readonly></textarea>
+      </div>
+    </form>
+    <div style="width:100%">
+      <div style="float:right; width:50%;">
+        <p style="font-size: 12px; margin-bottom:0px;">created at: {{ article.created_at }}</p>
+        <p style="font-size: 12px; margin-bottom:0px;">updated at: {{ article.updated_at }}</p>
+      </div>
+      <div style="float:left; width:50%; margin-bottom: 10px;">
+        <button type="submit" class="btn btn-outline-dark" style="float:left; margin-right:5px;">
+          Like!
+        </button>
+        <!-- 수정, 삭제 -->
+        <button @click="updateArticle" class="btn btn-outline-dark" style="float:left; margin-right:5px;">Edit</button>
+        <button @click="deleteArticle" class="btn btn-outline-dark" style="float:left">Delete</button>
+      </div>
+    </div>
+    <!-- 댓글 -->
     <CommentsListItem
-      v-for="comment in articleComments.slice().reverse()"
+      v-for="comment in comments.slice().reverse()"
       :key="comment.id"
       :comment="comment"
-      :article="article"
-    />
-    <form @submit.prevent="createComment">
-      <input type="textarea" v-model.trim="comment">
-      <input type="submit" id="submit">
+      @delete-comment="deleteComment"
+    /> 
+    <form @submit.prevent="createComment" style="margin-bottom:10px;">
+      <div class="mb-3">
+        <input type="from-control" v-model.trim="comment">
+        <input type="submit" id="submit" value="Push!">
+      </div>
     </form>
   </div>
 </template>
@@ -40,16 +54,19 @@ export default {
   },
   data() {
     return {
-      article: {
-        id: 0, // 에러 방지용 임시.
-      },
-      comments: [], // 보여줄 댓글
       comment: null,  // 입력되는 댓글
     }
   },
   computed: {
-    articleComments() {
-      return this.comments 
+    article() {
+      return this.$store.state.article
+    },
+    comments() {
+      if (this.$store.state.comments) {     // 댓글이 있다면 받아오기
+        return this.$store.state.comments
+      } else {                              // 댓글이 없다면 빈값
+        return []
+      }
     },
   },
   created() {
@@ -57,69 +74,57 @@ export default {
     this.getComments()
   },
   methods: {
+    nothing() {
+      return
+    },
     getArticleDetail() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then((res) => {
-          this.article = res.data
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$store.dispatch('getArticleDetail', this.$route.params.id)
     },
     goBack() {
       this.$router.push({ name: 'articles' })
     },
     deleteArticle() {
+      // this.$store.dispatch('deleteArticle', this.$route.params.id)
       axios({
         method: 'delete',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}`
-      })
-        .then((res) => {
-          this.article = res.data
-          this.$router.push({ name: 'articles' })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    getComments() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v2/articles/${this.$route.params.id}/comments/`
-      })
-        .then((res) => {
-          // console.log(res)
-          this.comments = res.data // 객체 댓글의 배열이 있다. [{0번댓글}, {1번댓글}, ...]
-        })
-    },
-    createComment() {
-      const comment = this.comment
-      if (!comment) {
-        alert('내용을 입력해주세요')
-      }
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v2/articles/${this.article.id}/comments/`,
-        data: {
-          content: comment,
-        },
+        url: `${API_URL}/api/v2/articles/${this.article.id}`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
-        }
+        },
       })
         .then(() => {
-          this.comment = ''
+          // console.log(res)
+          // context.commit('DELETE_ARTICLE', res.data)
+          alert('성공적으로 삭제되었습니다!')
+          this.$router.push({ name: 'articles' })
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          alert('글을 삭제할 권한이 없습니다.')
         })
     },
+    updateArticle() {
+      if (this.article.user == this.$store.state.user_info.pk) {
+        this.$router.push({ name: 'updateArticle', params: { id:this.article.id }})
+      } else {
+        alert('수정할 권한이 없습니다.')
+      }
+    },
+    getComments() {
+      this.$store.dispatch('getComments', this.$route.params.id)
+    },
+    createComment() {
+      if (!this.comment) {
+        alert('내용을 입력하세요~!')
+      } else {
+        let payload = [this.comment, this.$route.params.id]
+        this.$store.dispatch('createComment', payload)
+        this.comment = ''
+      }
+    },
+    deleteComment(commentData) {
+      let payload = [commentData, this.article.id]
+      this.$store.dispatch('deleteComment', payload)
+    }
   }
 }
 </script>

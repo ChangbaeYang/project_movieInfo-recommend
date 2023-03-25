@@ -20,7 +20,27 @@ def movie_list(request):
     if request.method == 'GET':
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
-    
+
+@api_view(['GET'])
+def movie_page_list(request, page):
+    movies = get_list_or_404(Movie)
+    if request.method == 'GET':
+        serializer = MovieListSerializer(movies[page:page+20], many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def movie_search(request, search_data):
+    movies = get_list_or_404(Movie)
+    if request.method == 'GET':
+        res_movies = []
+        for movie in movies:
+            print(movie.title)
+            if movie.title == search_data:
+                res_movies.append(movie)
+        if request.method == 'GET':
+            serializer = MovieListSerializer(res_movies, many=True)
+            return Response(serializer.data)
+ 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
@@ -36,6 +56,13 @@ def actor_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+def actor_page_list(request, page):
+    actors = get_list_or_404(Actor)
+    if request.method == 'GET':
+        serializer = ActorListSerializer(actors[page:page+20], many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
 def actor_detail(request, actor_pk):
     actor = get_object_or_404(Actor, pk=actor_pk)
     if request.method == 'GET':
@@ -47,6 +74,13 @@ def director_list(request):
     directors = get_list_or_404(Director)
     if request.method == 'GET':
         serializer = DirectorListSerializer(directors, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET'])
+def director_page_list(request, page):
+    directors = get_list_or_404(Director)
+    if request.method == 'GET':
+        serializer = DirectorListSerializer(directors[page:page+20], many=True)
         return Response(serializer.data)
     
 @api_view(['GET'])
@@ -117,13 +151,13 @@ def director_like(request, director_pk):
         director.like_users.add(request.user.pk)
         director_liked = True
     context={
+        'director_id': director_pk,
         'director_liked': director_liked,
         'director_like_count': director.like_users.count()
     } 
     return Response(context)
 
 @api_view(['POST'])
-
 def users_info(request):
     users = request.data.get('users')
     movies = []

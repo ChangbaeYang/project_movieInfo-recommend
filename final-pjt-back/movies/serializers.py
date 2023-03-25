@@ -12,7 +12,7 @@ class ActorSerializer(serializers.ModelSerializer):
         
 # MovieList Page를 렌더링할 때 필요한 시리얼 라이저
 class MovieListSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = Movie
         fields = '__all__'

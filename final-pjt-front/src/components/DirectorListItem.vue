@@ -17,13 +17,13 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title" style="font-size:40px; margin-bottom:20px;">{{ director.name }}</h5>
-                <p class="card-text">birth : </p>
+                <p class="card-text">birth : {{ director.birthday }}</p>
                 <p class="card-text">popularity : {{ director.popularity }}</p>
   
                 <p class="card-text">masterpiece : {{ repMovieTitle }}</p>
                 <p class="card-text"><small class="text-muted">{{ directorLikeCount }} like this director </small></p>
-                <p @click="likeDirector">❤</p>
-                <p @click="likeDirector">💖</p>
+                <p :class="{ 'display-none': Liked }" @click="likeDirector">❤</p>
+                <p :class="{ 'display-none': !Liked }" @click="likeDirector">💖</p>
               </div>
             </div>
           </div>
@@ -55,9 +55,6 @@ export default {
   props: {
     director: Object,
   },
-  created () {
-    this.$store.dispatch('getMovies')
-  },
   computed: {
     repMovieTitle() {
       const movieIdx = this.director.directing_movies[0]
@@ -77,31 +74,48 @@ export default {
         return false
       }
     },
-    directorLikeCount() {
-      return this.director.like_users.length
+    Liked() {
+      if (!this.isLogin) {
+        return false
+      } else {
+        if (this.$store.getters.director_liked) {
+          return true
+        } else {
+          return false
+        }
+      }
     },
+    directorLikeCount() {
+      if (this.isLogin) {
+        return this.$store.getters.director_like_count
+      } else {
+        return this.$store.state.director.like_users.length
+      }
+    }
   },
   methods: {
     showDirectorModal() {
       this.directorModal = !this.directorModal
       document.body.style.overflow = 'hidden'
+      this.$store.dispatch('selectDirector', this.director) // 선택한 감독의 정보를 vuex에 넘긴다.
     },
     replaceImg(e) {
       e.preventDefault
       e.target.src = noImg
     },
     closeModal() {
+      // 여기에서 기존 디렉터 정보를 지우자.
       this.directorModal = false
       document.body.style.overflow = 'unset'
     },
     likeDirector() {
-      if (this.$store.state.token) {
+      if (this.$store.state.token) { // 로그인이 되어있다면
         this.$store.dispatch('likeDirector', this.director.id)
       } else {
         this.$router.push({ name: 'login'})
-        alert('💖로그인이 필요한 기능입니다!💖')
+        alert('로그인이 필요한 기능입니다!🤣')
       }
-    }
+    },
   }
 }
 </script>
@@ -109,8 +123,5 @@ export default {
 <style>
 .display-none {
   display: none;
-}
-.display-block {
-  display: block;
 }
 </style>

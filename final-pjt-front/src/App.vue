@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <nav>
-      <h3>MDDM</h3>
-      <router-link :to="{ name: 'movies' }"> Movie </router-link> 
-      <router-link :to="{ name: 'actors' }"> Actor </router-link> 
-      <router-link :to="{ name: 'directors' }"> Director </router-link> 
-      <router-link :to="{ name: 'articles' }"> Article </router-link> 
-      <router-link v-if="isLogin" :to="{ name: 'profile' }"> Profile </router-link> 
-      <router-link v-if="!isLogin" :to="{ name: 'login' }"> Login </router-link>  
-      <router-link v-if="!isLogin" :to="{ name: 'signup' }"> SignUp </router-link>
-      <button v-if="isLogin" @click="logOut">Log-out</button>
-    </nav>
-    <router-view/>
+    <HomeView 
+      v-if="isHome"
+    />
+    <footer id="footer" class="fixed-bottom">
+  
+    </footer>
   </div>
 </template>
 
 <script>
+
 export default {
+  data () {
+    return {
+      searchData: null,
+      isHome: false,
+    }
+  },
   computed: {
     isLogin() {
       if (this.$store.state.token) { // 로그인이 되어있다면
@@ -24,12 +25,20 @@ export default {
       } else { // 로그인이 되어있지 않다면
         return false
       }
-    }
+    },
+    username() {
+      return this.$store.state.user_info.username
+    },
   },
   methods: {
     logOut() {
+      this.$router.push({ name:'HomeView' })
+      this.$store.commit('LOGOUT_USER')
       this.$store.dispatch('logOut')
-    }
+    },
+    searchUp() {
+      this.$store.dispatch('searchUp', this.searchData)
+    },
   }
 }
 </script>
@@ -37,23 +46,58 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
 }
 
-nav {
-  padding: 30px;
+#login-text:hover {
+  color: white;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#my-page:hover {
+  color: black;
+}
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+
+</style>
+
+<style scoped>
+a {
+  text-decoration: none;
+  color: black;
+}
+#login-btn {
+  color: black;
+}
+#login-btn :hover {
+  color: white;
+  background: black;
 }
 </style>
