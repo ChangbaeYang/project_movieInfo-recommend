@@ -47,11 +47,13 @@ Beautiful card layout makes user be happy with us.
 아름다운 카드 레이아웃 형식으로, 유저는 편하게 사이트를 즐길 수 있습니다.
 
 * **Main** **(메인 페이지 구성)**
-  ![image](https://user-images.githubusercontent.com/109326312/227715628-f7279cbb-3fb9-4e8c-ab9f-6b0fc00c94ab.png)
+
+![image](https://user-images.githubusercontent.com/109326312/227717041-719386d5-ca9d-424b-9c82-7be673417c55.png)
+
 
 This is main page.
 
-You can access another page if you click button on nav-bar
+You can access other pages if you click button on nav-bar
 
 You can search information by search on nav-bar
 
@@ -152,7 +154,7 @@ We used django basic feature.
 
 * **Why Vue?**
 
-There was two option that we could choose. React and Vue.
+There were two options that we could choose. React and Vue.
 
 We choose Vue, because it is framework.
 
@@ -164,7 +166,7 @@ And also, Vue is more optimized for CSL pjt.
 
 * **Why Django?**
 
-Cause We had only 1week, we should make fast.
+Cause We had only 1week, we should make it fast.
 
 And there is django admin feature, we knew it could save lots of time.
 
