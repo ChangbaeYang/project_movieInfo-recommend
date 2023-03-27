@@ -6,11 +6,11 @@
 
 ### ✔Index
 
+* **Development Environment (개발 환경)**
+
 * **Service (서비스 개요)**
 
 * **ERD (Entity Relation Diagram)**
-
-* **Development Environment (개발 환경)**
 
 * **Team (팀원)**
 
@@ -19,6 +19,35 @@
 * **API**
 
 * **To do (프젝에 추가하고 싶은 것)**
+
+---
+
+### 🛠 Development Environment (개발 환경)
+
+* **Vue & Django**
+
+![image](https://user-images.githubusercontent.com/109326312/227716775-c4c161e3-31b6-4aec-a2de-947cda94937f.png)
+
+
+* **Why Vue?**
+
+There were two options that we could choose. React and Vue.
+
+We choose Vue, because it is framework.
+
+Cause this project was our team's first project, framework would be easier for us to do.
+
+And also, Vue is more optimized for CSL pjt.
+
+
+
+* **Why Django?**
+
+Cause We had only 1week, we should make it fast.
+
+And there is django admin feature, we knew it could save lots of time.
+
+We chose Django for fast development.
 
 ---
 
@@ -142,35 +171,6 @@ We used django basic feature.
 * **Entire ERD**
 
 ![image](https://user-images.githubusercontent.com/109326312/227716703-6a5c52bc-83ef-49a1-8da3-a396076781f2.png)
-
----
-
-### 🛠 Development Environment (개발 환경)
-
-* **Vue & Django**
-
-![image](https://user-images.githubusercontent.com/109326312/227716775-c4c161e3-31b6-4aec-a2de-947cda94937f.png)
-
-
-* **Why Vue?**
-
-There were two options that we could choose. React and Vue.
-
-We choose Vue, because it is framework.
-
-Cause this project was our team's first project, framework would be easier for us to do.
-
-And also, Vue is more optimized for CSL pjt.
-
-
-
-* **Why Django?**
-
-Cause We had only 1week, we should make it fast.
-
-And there is django admin feature, we knew it could save lots of time.
-
-We chose Django for fast development.
 
 ---
 
