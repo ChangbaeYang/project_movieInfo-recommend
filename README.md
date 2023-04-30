@@ -235,6 +235,7 @@ To manage version of project
 
 * 헬프 페이지에 다른 유저는 못보도록 하기
 * 보안
+* 외부 API 적용해서 추천시스템 마련하기
 
 
 
